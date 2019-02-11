@@ -11,10 +11,10 @@ import Dashboard from './Dashboard'
 const UserPage = (props) => (
   <div>
     <h1 id="welcome">
-      Welcome, {props.user.username}! {props.user.current_streak ? `You have written ${props.user.current_streak} days in a row`:'Time to start a new streak!'}
+      Welcome, {props.user.username}! {props.user.current_streak ? `You have written ${props.user.current_streak} days in a row!`:'Time to start a new writing streak!'}
     </h1>
-    <p>Your ID is: {props.user.id}</p>
     <Dashboard />
+    <br /><br /><br /><br /><br />
     <LogOutButton className="log-in" />
   </div>
 );

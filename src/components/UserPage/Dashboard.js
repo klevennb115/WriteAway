@@ -1,15 +1,24 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 class Dashboard extends Component{
     componentDidMount(){
-        const action = {type: 'GET_STREAK'}
+        const action = {
+            type: 'GET_ADVICE' 
+        };
         this.props.dispatch(action);
     }
     render(){
         return(
             <div>
-                {/* <h1>{this.props.user.current_streak}</h1> */}
+                <div><h5>{this.props.reduxStore.prompt[0].text}</h5></div>
+                <Link className="nav-link" to="/profile">
+                    Profile
+                </Link>
+                <button className="nav-link">Write</button>
+                <button className="nav-link">Add Writing</button>
                 <h1>Sup</h1>
             </div>
             
@@ -17,7 +26,13 @@ class Dashboard extends Component{
         )
     }
 }
-const mapStateToProps = state => ({
-    user: state.user,
-});
+// const mapStateToProps = state => ({
+//     user: state.user,
+//     // reduxStore,
+//     // prompt: state.prompt
+// });
+
+const mapStateToProps = reduxStore => ({
+    reduxStore,
+})
 export default connect(mapStateToProps) (Dashboard);

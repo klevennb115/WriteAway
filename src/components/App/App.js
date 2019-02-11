@@ -17,6 +17,10 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
+//my imports
+import Profile from '../Profile/Profile';
+import TextEditor from '../TextEditor/TextEditor';
+
 import './App.css';
 
 class App extends Component {
@@ -55,6 +59,13 @@ class App extends Component {
               path="/info"
               component={InfoPage}
             />
+            {/* My additions */}
+            <ProtectedRoute
+              exact
+              path="/profile"
+              component={Profile}
+            />
+            {/* End my additions */}
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

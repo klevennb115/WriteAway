@@ -1,16 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import Dashboard from './Dashboard'
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
+
+
 const UserPage = (props) => (
   <div>
     <h1 id="welcome">
-      Welcome, { props.user.username }!
+      Welcome, {props.user.username}! {props.user.current_streak ? `You have written ${props.user.current_streak} days in a row`:'Time to start a new streak!'}
     </h1>
     <p>Your ID is: {props.user.id}</p>
+    <Dashboard />
     <LogOutButton className="log-in" />
   </div>
 );

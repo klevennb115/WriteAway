@@ -14,12 +14,16 @@ class Dashboard extends Component{
         return(
             <div>
                 <div><h5>{this.props.reduxStore.prompt[0].text}</h5></div>
-                <Link className="nav-link" to="/profile">
+                <Link className="nav-link link" to="/profile">
                     Profile
                 </Link>
-                <button className="nav-link">Write</button>
-                <button className="nav-link">Add Writing</button>
-                <h1>Sup</h1>
+                <Link className="nav-link link" to="/write">
+                    Write Away!
+                </Link>
+                <Link className="nav-link link" to="/add-writing">
+                    Add Writing Manually
+                </Link>
+                
             </div>
             
             

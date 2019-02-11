@@ -35,6 +35,7 @@ import ReactDOM from "react-dom";
 import { MegadraftEditor, editorStateFromRaw } from "megadraft";
 import '../TextEditor/megadraft.css';
 import { editorStateToJSON } from 'megadraft/lib/utils';
+import {connect} from 'react-redux';
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -57,7 +58,7 @@ class TextEditor extends Component {
       this.props.dispatch(action);
       
   }
-
+ 
   render() {
     return (
       <div>
@@ -76,4 +77,4 @@ ReactDOM.render(
   <TextEditor />,
   document.getElementById('react-root')
 );
-export default TextEditor;
+export default connect()(TextEditor);

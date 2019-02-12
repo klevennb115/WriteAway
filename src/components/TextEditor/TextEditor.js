@@ -36,6 +36,7 @@ import { MegadraftEditor, editorStateFromRaw } from "megadraft";
 import '../TextEditor/megadraft.css';
 import { editorStateToJSON } from 'megadraft/lib/utils';
 import {connect} from 'react-redux';
+import Timer from '../Timer/Timer'
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -44,7 +45,7 @@ import {connect} from 'react-redux';
 class TextEditor extends Component {
   constructor(props) {
     super(props);
-    this.state = { editorState: editorStateFromRaw(null) };
+    this.state = { editorState: editorStateFromRaw(null), timer: 0 };
   }
   onChange = (editorState) => {
     this.setState({ editorState });
@@ -58,10 +59,14 @@ class TextEditor extends Component {
       this.props.dispatch(action);
       
   }
+  handleTimeChange = (event) =>{
+      this.setState({timer: event})
+  }
  
   render() {
     return (
       <div>
+          <Timer onChange={this.handleTimeChange} />
         <p>
           Write Below
         </p>

@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
  */
 //need to figue out how to insert
 router.post('/', (req, res) => {
-    const username = req.user;
+    const username = req.user.username;
     const contents = req.body
     const queryText = 'INSERT INTO writing_entry (user_username, entry_contents) VALUES ($1, $2)';
     pool.query(queryText, [username, contents])

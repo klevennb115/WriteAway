@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeEvery} from 'redux-saga/effects';
 
-function* addEntry(action) {
+function* addEntry(action) {  //Entry POST
     try {
         const config = {
             headers: { 'Content-Type': 'application/json' },
@@ -11,11 +11,19 @@ function* addEntry(action) {
         
     } catch (error) {
         console.log('error in add entry saga', error);
-
     }
-}
+} //End POST
 
+function* getEnries(){ //Entry GET
+    try {
+        let serverResponse = yield axios.get('/api/entries');
+        yield put({ type: 'SET_ENTRIES', payload: serverResponse.data })
+    } catch (error) {
+        console.log('error in GET entry saga', error);
+    }
+} //end GET
 function* entrySaga() {
+    yield takeEvery('GET_ENTRIES', getEnries);
     yield takeEvery('ADD_ENTRY', addEntry);
 }
 

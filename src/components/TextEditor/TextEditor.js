@@ -57,16 +57,16 @@ class TextEditor extends Component {
       //once tags are added, make sure all info is added before you can save
       const action = {type: 'ADD_ENTRY', payload: content}
       this.props.dispatch(action);
-      
   }
-  handleTimeChange = (event) =>{
+  handleTimeChange = (event) =>{ // perhaps I should just send all data to child to post
       this.setState({timer: event})
   }
  
   render() {
     return (
       <div>
-          <Timer onChange={this.handleTimeChange} />
+          <Timer onSaveClick={this.handleTimeChange} 
+            saveContent={this.saveContent}/>
         <p>
           Write Below
         </p>

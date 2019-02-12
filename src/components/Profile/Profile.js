@@ -1,34 +1,21 @@
-// import React, {Component} from 'react';
-// import { connect } from 'react-redux';
-
-// class Profile extends Component {
-//     renders(){
-//         return(
-//             <div>
-//                 <h1>Hi</h1>
-//             </div>
-            
-//         )
-//     }
-// }
-// const mapStoreToProps = reduxStore => ({
-//     reduxStore,
-// })
-// export default connect(mapStoreToProps)(Profile);
-
-
-// import React, { Component } from 'react';
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import WritingEntries from './WritingEntries';
+import Overview from './Overview';
+import Stats from './Stats';
 
-const Profile = () => (
-    <div>
-        <p>
-            Profile
-        </p>
-        <button>Sup</button>
-    </div>
-);
+class Profile extends Component {
+    render(){
+        return(
+            <div>
+                <Overview />
+                <Stats />
+                <WritingEntries />
+            </div>
+            
+        )
+    }
+}
 const mapStoreToProps = reduxStore => ({
     reduxStore,
 })

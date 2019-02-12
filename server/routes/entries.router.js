@@ -6,12 +6,12 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-    const username = req.user.username;
-    console.log(username);
+    const userID = req.user.id;
+    console.log(userID);
     const queryText = `SELECT * FROM writing_entry
-WHERE user_username='a';`;
+WHERE user_username='${userID}';`;
     pool.query(queryText)
-        .then(() => { res.sendStatus(201); })
+        .then(results => res.send(results.rows))
         .catch((err) => { next(err); });
 });
 

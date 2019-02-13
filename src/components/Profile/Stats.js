@@ -12,6 +12,6 @@ class Stats extends Component {
     }
 }
 const mapStoreToProps = reduxStore => ({
-    reduxStore,
+    // reduxStore,
 })
 export default connect(mapStoreToProps)(Stats);

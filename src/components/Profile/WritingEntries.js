@@ -10,7 +10,7 @@ class WritingEntries extends Component {
         this.props.dispatch({type:'GET_ENTRIES'});
     }
     specificWritings = () => {
-        return this.props.reduxStore.entry.map((story, i) => {
+        return this.props.entry.map((story, i) => {
             return <SpecificWritings key={i} story={story}/>
         })
         
@@ -37,6 +37,6 @@ class WritingEntries extends Component {
     }
 }
 const mapStoreToProps = reduxStore => ({
-    reduxStore,
+    entry: reduxStore.entry,
 })
 export default connect(mapStoreToProps)(WritingEntries);

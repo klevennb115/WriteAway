@@ -6,7 +6,7 @@ class Timer extends Component {
         super(props)
     }
     startTimer = () => {
-        this.timer = setInterval(() => {
+        this.writingTimer = setInterval(() => {  //renamed from timer so as not to confuse with the reducer
             const action = {type: 'INCREASE_TIMER',payload: 1};
             this.props.dispatch(action);
             // dispatch INCREASE_TIMER
@@ -14,7 +14,7 @@ class Timer extends Component {
     }
     stopTimer = () => {
         if(this.timer) {
-            clearInterval(this.timer);
+            clearInterval(this.writingTimer);
         }
     }
     resetTimer = () => {
@@ -28,7 +28,7 @@ class Timer extends Component {
         // let currentTime = this.state.time/1000; //to make it look like seconds rather than millisecs
         return (
             <div>
-                <h3>timer: </h3>
+                <h3>timer: {this.props.timer}</h3>
                 {start}
                 {stop}
                 {reset}
@@ -36,4 +36,9 @@ class Timer extends Component {
         )
     }
 }
-export default connect()(Timer);
+
+const mapStateToProps = state => ({
+    timer: state.timer,
+});
+
+export default connect(mapStateToProps)(Timer);

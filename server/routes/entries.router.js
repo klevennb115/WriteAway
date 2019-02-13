@@ -15,10 +15,6 @@ WHERE user_username='${userID}';`;
         .catch((err) => { next(err); });
 });
 
-/**
- * POST route template
- */
-//need to figue out how to insert
 router.post('/', (req, res) => {
     const userID = req.user.id;
     const contents = req.body
@@ -27,5 +23,13 @@ router.post('/', (req, res) => {
         .then(() => { res.sendStatus(201); })
         .catch((err) => { next(err); });
 });
+
+router.delete('/:id', (req,res) =>{
+    let entry = req.params;
+    console.log(entry);
+    const queryText = `DELETE FROM "writing_entry" WHERE "id" = ${entry.id};`;
+    pool.query(queryText);
+    res.sendStatus(200);
+})
 
 module.exports = router;

@@ -22,9 +22,22 @@ function* getEnries(){ //Entry GET
         console.log('error in GET entry saga', error);
     }
 } //end GET
+
+function* deleteEntry(action) {
+    try{
+        yield axios.delete(`/api/entries/${action.payload}`);
+        const nextAction = {type: 'GET_ENTRIES'};
+        yield put(nextAction);
+    } catch (error) {
+        console.log('Error making DELETE request');
+        alert('there was a problem');
+    }
+    
+}
 function* entrySaga() {
     yield takeEvery('GET_ENTRIES', getEnries);
     yield takeEvery('ADD_ENTRY', addEntry);
+    yield takeEvery('DELETE_ENTRY', deleteEntry);
 }
 
 // try {

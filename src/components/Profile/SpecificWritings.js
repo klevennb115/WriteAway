@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 class SpecificWritings extends Component {
@@ -17,7 +18,9 @@ class SpecificWritings extends Component {
             
                 <tr>
                     <td>{this.props.story.entry_name}</td>
-                    <td><button onClick={this.editEntry}>Edit</button></td>
+                <td><Link to="/edit-writing">
+                    Edit
+                </Link></td>
                     <td><button onClick={this.deleteEntry}>Delete</button></td>
                 </tr>
         )

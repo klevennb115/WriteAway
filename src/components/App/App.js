@@ -21,6 +21,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import Profile from '../Profile/Profile';
 import TextEditor from '../TextEditor/TextEditor';
 import ManualEntry from '../ManualEntry/ManualEntry';
+import EditEntry from '../EditEntry/EditEntry';
 
 import './App.css';
 
@@ -75,6 +76,11 @@ class App extends Component {
               exact
               path="/add-writing"
               component={ManualEntry}
+            />
+            <ProtectedRoute
+              exact
+              path="/edit-writing"
+              component={EditEntry}
             />
             {/* End my additions */}
             {/* If none of the other routes matched, we will show a 404. */}

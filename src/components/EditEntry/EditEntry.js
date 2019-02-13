@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class DefaultComponent extends Component {
+class EditEntry extends Component {
     render() {
         return (
             <h1>DELETE THIS</h1>
@@ -11,4 +11,8 @@ class DefaultComponent extends Component {
 const mapStoreToProps = reduxStore => ({
     // reduxStore,
 })
-export default connect(mapStoreToProps)(DefaultComponent);
+export default connect(mapStoreToProps)(EditEntry);
+
+{/* <Link className="nav-link link" to="/profile">
+    Profile
+                </Link> */}

@@ -13,7 +13,7 @@ class Dashboard extends Component{
     render(){
         return(
             <div>
-                <div><h5>{this.props.reduxStore.prompt[0].text}</h5></div>
+                <div><h5>{this.props.prompt[0].text}</h5></div>
                 <Link className="nav-link link" to="/profile">
                     Profile
                 </Link>
@@ -33,10 +33,10 @@ class Dashboard extends Component{
 // const mapStateToProps = state => ({
 //     user: state.user,
 //     // reduxStore,
-//     // prompt: state.prompt
+    // prompt: state.prompt
 // });
 
 const mapStateToProps = reduxStore => ({
-    reduxStore,
+    prompt: reduxStore.prompt
 })
 export default connect(mapStateToProps) (Dashboard);

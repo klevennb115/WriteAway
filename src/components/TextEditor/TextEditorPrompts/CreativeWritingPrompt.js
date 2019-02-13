@@ -20,6 +20,7 @@
 import React, {Component} from 'react';
 import '../TextEditor.css';
 
+
 class CreativeWritingPrompt extends Component{
     render(){
         return(
@@ -30,3 +31,4 @@ class CreativeWritingPrompt extends Component{
     }
 }
 export default CreativeWritingPrompt;
+

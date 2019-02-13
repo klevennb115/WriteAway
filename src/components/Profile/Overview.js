@@ -12,6 +12,7 @@ class Overview extends Component {
     }
 }
 const mapStoreToProps = reduxStore => ({
-    reduxStore,
+    prompt: reduxStore.prompt, // only map prompt reducer
+    // another: reduxStore.another,
 })
 export default connect(mapStoreToProps)(Overview);

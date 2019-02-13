@@ -50,13 +50,9 @@ class TextEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange} />
         <button onClick={this.saveContent}>Save</button>
-            <CreativeWritingPrompt />
+        <CreativeWritingPrompt />
       </div>
     );
   }
 }
-ReactDOM.render(
-  <TextEditor />,
-  document.getElementById('react-root')
-);
 export default connect()(TextEditor);

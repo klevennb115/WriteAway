@@ -5,16 +5,14 @@ import { connect } from 'react-redux';
 class SpecificWritings extends Component {
     render() {
         return (
-            <div>
+            
                 <tr>
                     <td>{this.props.story.entry_name}</td>
                 </tr>
-            </div>
-
         )
     }
 }
 const mapStoreToProps = reduxStore => ({
-    reduxStore,
+    // store =reduxStore,
 })
 export default connect(mapStoreToProps)(SpecificWritings);

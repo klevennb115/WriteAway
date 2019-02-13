@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class DefaultComponent extends Component {
     renders() {
         return (
-            <h1>Hi</h1>
+            <h1>DELETE THIS</h1>
         )
     }
 }

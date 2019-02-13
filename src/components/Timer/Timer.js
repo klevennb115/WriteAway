@@ -10,12 +10,14 @@ class Timer extends Component {
         }
     }
     startTimer = () => {
+        
         this.setState({
             time: this.state.time,
             start: Date.now() - this.state.time,
             isOn: true
         })
         this.timer = setInterval(() => this.setState({
+            //const action = {type: 'SET_TIME', payload:} This can't be here, but this is roughly where I should dispatch
             time: Date.now() - this.state.start
         }), 1);
     }
@@ -26,12 +28,12 @@ class Timer extends Component {
     resetTimer = () => {
         this.setState({ time: 0 })
     }
-    sendTime =()=> {
-        const timeToSend = this.state.time;
-        this.props.onSaveClick(timeToSend);
-        console.log('in sendTime');
+    // sendTime =()=> {
+    //     const timeToSend = this.state.time;
+    //     this.props.onSaveClick(timeToSend);
+    //     console.log('in sendTime');
         
-    }
+    // }
     render() {
         let start = (this.state.time === 0) ?
             <button onClick={this.startTimer}>start</button> :

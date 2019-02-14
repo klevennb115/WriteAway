@@ -5,6 +5,7 @@ import user from './userReducer';
 import prompt from './promptReducer';
 import entry from './entryReducer';
 import timer from './timeReducer';
+import edit from './editReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   prompt, //will contain a large array of random prompts and advice and stuff
   entry, //for the profile page
   timer,  //from the timer
+  edit,
 });
 
 export default rootReducer;

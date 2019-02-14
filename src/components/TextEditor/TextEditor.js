@@ -32,9 +32,11 @@ class TextEditor extends Component {
       this.setState({timer: event})
   }
   wordsLeft = () => {
-      let wordsInEditor = editorStateToJSON(this.state.editorState);
-      let wordsTilGoal = 500;
-      return wordsTilGoal - (wordsInEditor.split(' ').length-66); //66 is the length of the JSON string
+    let wordsInEditor = editorStateToJSON(this.state.editorState);
+    console.log('in wordsLeft',  JSON.parse(wordsInEditor).blocks);
+    
+    let wordsTilGoal = 500;
+    return wordsTilGoal - (wordsInEditor.split(' ').length-66); //66 is the length of the JSON string
   }
  
   render() {

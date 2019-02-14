@@ -10,8 +10,10 @@ class WritingEntries extends Component {
         this.props.dispatch({type:'GET_ENTRIES'});
     }
     specificWritings = () => {
+        console.log(this.props.entry);
+        
         return this.props.entry.map((story, i) => {
-            return <SpecificWritings key={i} story={story}/>
+            return <SpecificWritings history={this.props.history} key={i} story={story}/>
         })
         
     }

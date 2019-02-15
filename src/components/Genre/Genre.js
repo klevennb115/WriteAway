@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Genre extends Component {
     constructor(props) {
         super(props);
-        this.state = { value: 'Uncatagorized' };
+        this.state = { value: '' };
     }
     componentDidMount(){
         this.changeGenre()
@@ -13,8 +13,12 @@ class Genre extends Component {
         this.props.dispatch({ type: 'GET_GENRES' });
         // <Genre />
     }
-    handleChange = () => {
-        console.log('hi', this.props.genres);
+    handleChange = (event) => {
+        const action = {type: "SAVE_GENRE", payload: event.target.value};
+        console.log(action);
+        this.props.dispatch(action);
+        this.setState({value: event.target.value});
+        console.log(this.state);
         
     }
     render() {

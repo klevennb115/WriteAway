@@ -8,6 +8,7 @@ import timer from './timeReducer';
 import edit from './editReducer';
 import entryID from './entryIDReducer';
 import genres from './genresReducer';
+import genreSave from './genreSaveReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   edit,
   entryID,  //non editor content the edit session
   genres, // for the dropdown
+  genreSave,
 });
 
 export default rootReducer;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MegadraftEditor, editorStateFromRaw } from "megadraft";
+import { MegadraftEditor} from "megadraft";
 import '../TextEditor/megadraft.css';
 // import './TextEditor.css';
 import { editorStateToJSON } from 'megadraft/lib/utils';
@@ -13,13 +13,6 @@ class EditEntry extends Component {
         const action = { type: 'EDIT_ENTRY', payload: editorState };
         this.props.dispatch(action);
     }
-
-    // textToEditor = (e) => {
-    //     console.log(e);
-    //     const editorState = editorStateFromRaw(e);
-    //     this.setState = { editorState };
-    // }
-
     onSaveClick = () => {
         const content = {text: editorStateToJSON(this.props.edit),id: this.props.entryID.id};
         console.log(editorStateToJSON(this.props.edit));

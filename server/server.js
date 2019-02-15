@@ -12,7 +12,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const promptsRouter = require('./routes/prompts.router');
 const entriesRouter = require('./routes/entries.router');
-const genresRouter = require('/routes/genres.router');
+const genresRouter = require('./routes/genres.router');
 
 // Body parser middleware
 app.use(bodyParser.json());

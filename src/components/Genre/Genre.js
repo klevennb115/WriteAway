@@ -6,17 +6,29 @@ class Genre extends Component {
         super(props);
         this.state = { value: 'Uncatagorized' };
     }
+    componentDidMount(){
+        this.changeGenre()
+    }
+    changeGenre = () => {
+        this.props.dispatch({ type: 'GET_GENRES' });
+        // <Genre />
+    }
+    handleChange = () => {
+        console.log('hi', this.props.genres);
+        
+    }
     render() {
         return (
             <div>
+                <h4>Genre</h4>
                 <select value={this.state.value}
                     onChange={this.handleChange}>
-                    <option></option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
+                    <option value='Uncategorized'>Uncategorized</option>
+                    {this.props.genres.map((genre, i) => {
+                        return <option key={i} value={genre.types}>{genre.types}</option>
+                    })}
+                    
+
                 </select> 
             </div>
         )
@@ -24,16 +36,6 @@ class Genre extends Component {
 }
 const mapStoreToProps = reduxStore => ({
     // reduxStore,
+    genres : reduxStore.genres
 })
 export default connect(mapStoreToProps)(Genre);
-
-
-{/* <select value={this.state.value}
-    onChange={this.handleChange}>
-    <option></option>
-    <option value='1'>1</option>
-    <option value='2'>2</option>
-    <option value='3'>3</option>
-    <option value='4'>4</option>
-    <option value='5'>5</option>
-</select> */}

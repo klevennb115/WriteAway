@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import promptSaga from '../../../redux/sagas/promptSaga';
+// import promptSaga from '../../../redux/sagas/promptSaga';
 import swal from 'sweetalert';
 
 class CreativeWritingPrompt extends Component {

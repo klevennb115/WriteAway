@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import { MegadraftEditor, editorStateFromRaw } from "megadraft";
 import '../TextEditor/megadraft.css';
 import './TextEditor.css';
 import { editorStateToJSON } from 'megadraft/lib/utils';
 import {connect} from 'react-redux';
-import Timer from '../Timer/Timer';
+// import Timer from '../Timer/Timer';
 import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWritingPrompt';
 import Genre from '../Genre/Genre';
 
@@ -29,10 +28,7 @@ class TextEditor extends Component {
         alert("Make sure to name your story!");;
     }
   }
-  changeGenre = () => {
-    this.props.dispatch({ type: 'GET_GENRES' });
-    // <Genre />
-  }
+ 
   wordsLeft = () => {
     let wordsInEditor = editorStateToJSON(this.state.editorState);
     console.log('in wordsLeft',  JSON.parse(wordsInEditor).blocks);
@@ -59,7 +55,7 @@ class TextEditor extends Component {
           onChange={this.onChange} />
         <button onClick={this.saveContent}>Save</button>
         <CreativeWritingPrompt />
-        {this.wordsLeft()}
+        <Genre />
       </div>
     );
   }

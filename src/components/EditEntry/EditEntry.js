@@ -24,11 +24,16 @@ class EditEntry extends Component {
         const content = {text: editorStateToJSON(this.props.edit),id: this.props.entryID};
         // Your function to save the content
         // save_my_content(content);
-        // console.log(content);
+        console.log(this.props.edit);
+        console.log(editorStateToJSON(this.props.edit));
+        // console.log(editorStateFromRaw);
+        
+        
         // console.log('!!!!!!!!', this.props.entry);
         // console.log(this.props.entryID);
-        
         const action = { type: 'EDIT_ENTRY_IN_DB', payload: content };
+        console.log(action);
+        
         this.props.dispatch(action);
     }
 

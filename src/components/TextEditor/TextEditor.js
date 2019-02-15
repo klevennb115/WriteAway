@@ -15,9 +15,9 @@ import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWriti
 class TextEditor extends Component {
   constructor(props) {
     super(props);
-    this.state = { editorState: editorStateFromRaw(null), timer: 0};
+    this.state = { editorState: editorStateFromRaw(null), title: ''};
   }
-  onChange = (editorState) => {
+  onChange = (editorState) => {  //on change in the editor
     this.setState({ editorState });
   }
   saveContent = () => {
@@ -28,9 +28,9 @@ class TextEditor extends Component {
       const action = {type: 'ADD_ENTRY', payload: content}
       this.props.dispatch(action);
   }
-  handleTimeChange = (event) =>{ // perhaps I should just send all data to child to post
-      this.setState({timer: event})
-  }
+  // handleTimeChange = (event) =>{ // perhaps I should just send all data to child to post
+  //     this.setState({timer: event})
+  // }
   wordsLeft = () => {
     let wordsInEditor = editorStateToJSON(this.state.editorState);
     console.log('in wordsLeft',  JSON.parse(wordsInEditor).blocks);
@@ -38,13 +38,17 @@ class TextEditor extends Component {
     let wordsTilGoal = 500;
     return wordsTilGoal - (wordsInEditor.split(' ').length-66); //66 is the length of the JSON string
   }
+  titleChange = (event) => {
+    this.setState({ title: event.target.value })
+  }
  
   render() {
     return (
       <div>
           <h3>Words Til Goal: {this.wordsLeft()}</h3>
-          <Timer onSaveClick={this.handleTimeChange} 
-            saveContent={this.saveContent}/>
+          {/* <Timer onSaveClick={this.handleTimeChange} 
+            saveContent={this.saveContent}/> */}
+        <input placeholder="Title" onChange={this.titleChange}></input>
         <p>
           Write Below
         </p>

@@ -27,9 +27,21 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req,res) =>{
     let entry = req.params;
     console.log(entry);
-    const queryText = `DELETE FROM "writing_entry" WHERE "id" = ${entry.id};`;
-    pool.query(queryText);
+    const queryText = `DELETE FROM "writing_entry" WHERE "id" = $1;`;
+    pool.query(queryText, [entry.id]);
     res.sendStatus(200);
+});
+
+router.put('/:id', (req,res) =>{
+    let entry = req.params.id;
+    let content = req.body;
+    console.log(entry, content);
+    
+    const queryText = `UPDATE "writing_entry" SET "entry_contents"= $1
+                       WHERE "id" = $2;`;
+    pool.query(queryText, [content, entry])
+        .then(() => { res.sendStatus(201); })
+        .catch((err) => { next(err); });
 })
 
 module.exports = router;

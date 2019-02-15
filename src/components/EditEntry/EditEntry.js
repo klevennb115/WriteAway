@@ -21,10 +21,15 @@ class EditEntry extends Component {
     // }
 
     onSaveClick = () => {
-        const content = editorStateToJSON(this.props.edit);
+        const content = {text: editorStateToJSON(this.props.edit),id: this.props.entryID};
         // Your function to save the content
         // save_my_content(content);
-        console.log(content);
+        // console.log(content);
+        // console.log('!!!!!!!!', this.props.entry);
+        // console.log(this.props.entryID);
+        
+        const action = { type: 'EDIT_ENTRY_IN_DB', payload: content };
+        this.props.dispatch(action);
     }
 
     render() {
@@ -49,6 +54,7 @@ class EditEntry extends Component {
 }
 const mapStoreToProps = reduxStore => ({
     entry: reduxStore.entry,
-    edit: reduxStore.edit
+    edit: reduxStore.edit,
+    entryID: reduxStore.entryID,
 })
 export default connect(mapStoreToProps)(EditEntry);

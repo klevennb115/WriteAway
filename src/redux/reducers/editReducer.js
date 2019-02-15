@@ -6,5 +6,5 @@ const editReducer = (state = {}, action) => {
             return state;
     }
 };
-
+//this reducer takes the text from whatever entry is clicked on so the editor can display it
 export default editReducer;

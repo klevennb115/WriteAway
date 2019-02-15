@@ -31,13 +31,21 @@ function* deleteEntry(action) {
     } catch (error) {
         console.log('Error making DELETE request');
         alert('there was a problem');
+}} //end DELETE
+
+function* editEntry(action) {
+    try{
+        yield axios.put(`api/entries/${action.payload.id}`, action.payload.text);
+    } catch (error) {
+        console.log('error in edit entry saga', error);
     }
     
-}
+}  // will take action.payload.params && action.payload.entrycontents
 function* entrySaga() {
     yield takeEvery('GET_ENTRIES', getEnries);
     yield takeEvery('ADD_ENTRY', addEntry);
     yield takeEvery('DELETE_ENTRY', deleteEntry);
+    yield takeEvery('EDIT_ENTRY_IN_DB', editEntry);
 }
 
 // try {

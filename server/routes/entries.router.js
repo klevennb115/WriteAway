@@ -19,11 +19,12 @@ router.post('/', (req, res) => {
     const userID = req.user.id;
     const contents = JSON.parse(req.body.text);
     const title = req.body.title;
-    console.log(contents);
+    const genre = req.body.genre;
+    console.log(genre);
     
     // const title = req.body
-    const queryText = 'INSERT INTO writing_entry (user_username, entry_name, entry_contents) VALUES ($1, $2, $3);';
-    pool.query(queryText, [userID, title, contents])
+    const queryText = 'INSERT INTO writing_entry (user_username, entry_name, entry_contents,entry_genre) VALUES ($1, $2, $3, $4);';
+    pool.query(queryText, [userID, title, contents, genre])
         .then(() => { res.sendStatus(201); })
         .catch((err) => { next(err); });
 });

@@ -18,9 +18,10 @@ class TextEditor extends Component {
   }
   saveContent = () => {
     const {editorState} = this.state;
-    const content = { text: editorStateToJSON(editorState), title: this.state.title };
+    const content = { text: editorStateToJSON(editorState), title: this.state.title, genre: this.props.genreSave };
       //once tags are added, make sure all info is added before you can save
-  
+    console.log(content);
+    
     if (this.state.title !== '') {
       const action = {type: 'ADD_ENTRY', payload: content}
       this.props.dispatch(action);
@@ -60,4 +61,8 @@ class TextEditor extends Component {
     );
   }
 }
-export default connect()(TextEditor);
+
+const mapStoreToProps = state => ({
+  genreSave: state.genreSave,
+});
+export default connect(mapStoreToProps)(TextEditor);

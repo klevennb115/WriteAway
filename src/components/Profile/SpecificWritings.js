@@ -6,7 +6,7 @@ import { editorStateFromRaw } from "megadraft";
 
 class SpecificWritings extends Component {
     editEntry = () => {
-        const entryID = this.props.story.id;
+        const entryID = this.props.story;
         const rawContents = editorStateFromRaw(JSON.parse(this.props.story.entry_contents));
         console.log('in editing', rawContents);
         const action = { type: 'EDIT_ENTRY', payload: rawContents };

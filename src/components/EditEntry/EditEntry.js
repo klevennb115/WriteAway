@@ -21,10 +21,7 @@ class EditEntry extends Component {
     // }
 
     onSaveClick = () => {
-        const content = {text: editorStateToJSON(this.props.edit),id: this.props.entryID};
-        // Your function to save the content
-        // save_my_content(content);
-        console.log(this.props.edit);
+        const content = {text: editorStateToJSON(this.props.edit),id: this.props.entryID.id};
         console.log(editorStateToJSON(this.props.edit));
         // console.log(editorStateFromRaw);
         
@@ -40,6 +37,7 @@ class EditEntry extends Component {
     render() {
         return (
             <div>
+                <h1>{this.props.entryID.entry_name}</h1>
                 {Object.entries(this.props.edit).length !== 0 && <div>
                     <MegadraftEditor
                         editorState={this.props.edit}

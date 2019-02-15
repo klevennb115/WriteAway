@@ -7,6 +7,7 @@ import entry from './entryReducer';
 import timer from './timeReducer';
 import edit from './editReducer';
 import entryID from './entryIDReducer';
+import genres from './genresReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   entry, //for the profile page
   timer,  //from the timer
   edit,
-  entryID,
+  entryID,  //non editor content the edit session
+  genres, // for the dropdown
 });
 
 export default rootReducer;

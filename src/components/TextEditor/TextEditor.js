@@ -7,10 +7,7 @@ import { editorStateToJSON } from 'megadraft/lib/utils';
 import {connect} from 'react-redux';
 import Timer from '../Timer/Timer';
 import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWritingPrompt';
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
+import Genre from '../Genre/Genre';
 
 class TextEditor extends Component {
   constructor(props) {
@@ -21,23 +18,21 @@ class TextEditor extends Component {
     this.setState({ editorState });
   }
   saveContent = () => {
-      const {editorState} = this.state;
-      // const content = editorStateToJSON(editorState);
+    const {editorState} = this.state;
     const content = { text: editorStateToJSON(editorState), title: this.state.title };
-      const title = this.state.title;
-      console.log(content);
       //once tags are added, make sure all info is added before you can save
-      
-      if (this.state.title !== '') {
-        const action = {type: 'ADD_ENTRY', payload: content}
-        this.props.dispatch(action);
-      } else {
+  
+    if (this.state.title !== '') {
+      const action = {type: 'ADD_ENTRY', payload: content}
+      this.props.dispatch(action);
+    } else {
         alert("Make sure to name your story!");;
-      }
+    }
   }
-  // handleTimeChange = (event) =>{ // perhaps I should just send all data to child to post
-  //     this.setState({timer: event})
-  // }
+  changeGenre = () => {
+    this.props.dispatch({ type: 'GET_GENRES' });
+    // <Genre />
+  }
   wordsLeft = () => {
     let wordsInEditor = editorStateToJSON(this.state.editorState);
     console.log('in wordsLeft',  JSON.parse(wordsInEditor).blocks);
@@ -64,6 +59,7 @@ class TextEditor extends Component {
           onChange={this.onChange} />
         <button onClick={this.saveContent}>Save</button>
         <CreativeWritingPrompt />
+        {this.wordsLeft()}
       </div>
     );
   }

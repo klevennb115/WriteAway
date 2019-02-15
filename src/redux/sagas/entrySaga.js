@@ -35,7 +35,7 @@ function* deleteEntry(action) {
 
 function* editEntry(action) {
     try{
-        yield axios.put(`api/entries/${action.payload.id}`, action.payload.text);
+        yield axios.put(`api/entries/${action.payload.id}`, action.payload);
     } catch (error) {
         console.log('error in edit entry saga', error);
     }

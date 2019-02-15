@@ -17,9 +17,13 @@ WHERE user_username='${userID}';`;
 
 router.post('/', (req, res) => {
     const userID = req.user.id;
-    const contents = req.body
-    const queryText = 'INSERT INTO writing_entry (user_username, entry_contents) VALUES ($1, $2)';
-    pool.query(queryText, [userID, contents])
+    const contents = JSON.parse(req.body.text);
+    const title = req.body.title;
+    console.log(contents);
+    
+    // const title = req.body
+    const queryText = 'INSERT INTO writing_entry (user_username, entry_name, entry_contents) VALUES ($1, $2, $3);';
+    pool.query(queryText, [userID, title, contents])
         .then(() => { res.sendStatus(201); })
         .catch((err) => { next(err); });
 });
@@ -34,12 +38,13 @@ router.delete('/:id', (req,res) =>{
 
 router.put('/:id', (req,res) =>{
     let entry = req.params.id;
-    let content = req.body;
-    console.log(entry, content);
+    let content = req.body.text;
+    let newContent = JSON.parse(content);
+    console.log(content, newContent);
     
     const queryText = `UPDATE "writing_entry" SET "entry_contents"= $1
                        WHERE "id" = $2;`;
-    pool.query(queryText, [content, entry])
+    pool.query(queryText, [newContent, entry])
         .then(() => { res.sendStatus(201); })
         .catch((err) => { next(err); });
 })

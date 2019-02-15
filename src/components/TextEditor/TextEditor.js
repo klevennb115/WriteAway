@@ -22,11 +22,18 @@ class TextEditor extends Component {
   }
   saveContent = () => {
       const {editorState} = this.state;
-      const content = editorStateToJSON(editorState);
+      // const content = editorStateToJSON(editorState);
+    const content = { text: editorStateToJSON(editorState), title: this.state.title };
+      const title = this.state.title;
       console.log(content);
       //once tags are added, make sure all info is added before you can save
-      const action = {type: 'ADD_ENTRY', payload: content}
-      this.props.dispatch(action);
+      
+      if (this.state.title !== '') {
+        const action = {type: 'ADD_ENTRY', payload: content}
+        this.props.dispatch(action);
+      } else {
+        alert("Make sure to name your story!");;
+      }
   }
   // handleTimeChange = (event) =>{ // perhaps I should just send all data to child to post
   //     this.setState({timer: event})

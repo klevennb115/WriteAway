@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 class CreativeWritingPrompt extends Component {
     showPrompt = () => {
         swal ("Hello World");
+        
     }
 
     render(){

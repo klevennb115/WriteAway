@@ -30,11 +30,6 @@ class Dashboard extends Component{
         )
     }
 }
-// const mapStateToProps = state => ({
-//     user: state.user,
-//     // reduxStore,
-    // prompt: state.prompt
-// });
 
 const mapStateToProps = reduxStore => ({
     prompt: reduxStore.prompt

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import Dashboard from './Dashboard'
+import Dashboard from './Dashboard';
+import Streak from './Streak';
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -10,6 +11,7 @@ import Dashboard from './Dashboard'
 
 const UserPage = (props) => (
   <div>
+    <Streak />
     <h1 id="welcome">
       Welcome, {props.user.username}! {props.user.current_streak ? `You have written ${props.user.current_streak} days in a row!`:'Time to start a new writing streak!'}
     </h1>

@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 // import Timer from '../Timer/Timer';
 import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWritingPrompt';
 import Genre from '../Genre/Genre';
+var moment = require('moment');  //needed to timestamp submission
 
 class TextEditor extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class TextEditor extends Component {
   }
   saveContent = () => {
     const {editorState} = this.state;
-    const content = { text: editorStateToJSON(editorState), title: this.state.title, genre: this.props.genreSave };
+    const content = { text: editorStateToJSON(editorState), title: this.state.title, genre: this.props.genreSave, subTime: moment()._d };
       //once tags are added, make sure all info is added before you can save
     console.log(content);
     

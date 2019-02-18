@@ -5,6 +5,7 @@ import './TextEditor.css';
 import { editorStateToJSON } from 'megadraft/lib/utils';
 import {connect} from 'react-redux';
 // import Timer from '../Timer/Timer';
+// import PromptButton from '../TextEditor/TextEditorPrompts/PromptButton'
 import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWritingPrompt';
 import Genre from '../Genre/Genre';
 var moment = require('moment');  //needed to timestamp submission
@@ -52,6 +53,7 @@ class TextEditor extends Component {
         <p>
           Write Below
         </p>
+        {/* <PromptButton /> */}
         <MegadraftEditor
           editorState={this.state.editorState}
           onChange={this.onChange} />

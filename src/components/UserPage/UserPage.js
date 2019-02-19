@@ -12,9 +12,9 @@ import Streak from './Streak';
 const UserPage = (props) => (
   <div>
     <Streak />
-    <h1 id="welcome">
+    {/* <h1 id="welcome">
       Welcome, {props.user.username}! {props.user.current_streak ? `You have written ${props.user.current_streak} days in a row!`:'Time to start a new writing streak!'}
-    </h1>
+    </h1> */}
     <Dashboard />
     <br /><br /><br /><br /><br />
     <LogOutButton className="log-in" />

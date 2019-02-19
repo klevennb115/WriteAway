@@ -5,20 +5,23 @@ var moment = require('moment');
 class Streak extends Component{
     constructor(props){
         super(props);
-        state:{
+        this.state={
             streak:0
         }
     }
     componentDidMount() {
         this.getEntries();
+        this.getLatestDate();
+
     }
     getEntries = () => {
         this.props.dispatch({ type: 'GET_ENTRIES' });
-        this.props.entry.length !== 0 && console.log(this.props.entry,this.props.user);
     }
     getLatestDate = () => {
+        console.log('$$$$$$$$$$$', this.props.entry.length);
+        
         let dates = [];
-        this.props.entry.map((sub) => {
+        this.props.entry.length !== 0 && this.props.entry.map((sub) => {
             if (sub.submission_time !== null) {  //this will get only dates
                 dates.push(moment(sub.submission_time))
             }
@@ -49,16 +52,21 @@ class Streak extends Component{
                 
             }
         }
-        this.setState({
-            state: streak,
-        })
+        // this.setState({
+        //     streak: streak
+        // })
+        // if(this.props.user.highest_streak !== streak){    //I can use something like this if I want to add some stats
+        //     console.log('$$$$$$$$$$', this.props.user.current_streak, streak);
+        // }
         
     }
     render(){
-        this.props.entry.length !== 0 && this.getLatestDate();  //makes sure entries are in reducer before proceeding
+        // this.props.entry.length !== 0 && this.getLatestDate();  //makes sure entries are in reducer before proceeding
         return(
             <div>
-                <h1>Sup</h1>
+                <h1 id="welcome">
+                    Welcome, {this.props.user.username}! {this.state.streak ? `You have written ${this.state.streak} days in a row!` : 'Time to start a new writing streak!'}
+                </h1>
             </div>
         )
     }

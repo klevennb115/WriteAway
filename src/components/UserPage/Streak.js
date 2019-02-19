@@ -32,14 +32,12 @@ class Streak extends Component{
         const endDay = moment().startOf('day');
         let startDay = moment().startOf('day').subtract(1, 'day');
         while(killswitch < dates.length){
-            console.log('PRE!!!!!!!', streak, endDay, startDay);
             for (let i = 0; i < dates.length; i++) {
                 if (dates[i].isBetween(startDay, endDay)) {
                     streak += 1;
                     endDay.subtract(1, 'day');
                     startDay.subtract(1,'day');
                     killswitch = 0;
-                    console.log(dates[i], '!!!!!!!!!!!!!', streak, endDay, startDay, todayPost);
 
                 } else if (dates[i].isBetween(moment().startOf('day'), moment())){
                     todayPost+=1;

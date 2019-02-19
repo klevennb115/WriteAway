@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import promptSaga from '../../../redux/sagas/promptSaga';
 import swal from 'sweetalert';
+import './CreativeWritingPrompt.css';
 
 class CreativeWritingPrompt extends Component {
     componentDidMount() {
@@ -104,6 +105,7 @@ class CreativeWritingPrompt extends Component {
                 <button onClick={this.showPrompt} value='6'>Journal Prompt</button>
                 <button onClick={this.showPrompt} value='2'>Science-Fiction/Fantasy Prompt</button>
                 {/* <button onClick={this.showPrompt} value='3'>Fantasy Prompt</button> */}
+                <p className="blockquote before">Blah Blah Blah</p>
             </div>
         )
     }

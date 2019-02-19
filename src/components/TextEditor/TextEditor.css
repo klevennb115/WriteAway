@@ -1,6 +1,16 @@
-div {background-color: burlywood};
+div {background-color: burlywood;}
+
+#editorContainer{
+    background-color: black;
+}
+
+
+
+
 
 .prompt-button {
     float: right;
-    height: 300px;
+    height: 100px;
+    width: 300px;
+    margin-right: 200px;
 }

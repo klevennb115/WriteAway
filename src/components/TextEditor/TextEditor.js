@@ -54,10 +54,13 @@ class TextEditor extends Component {
           Write Below
         </p>
         {/* <PromptButton /> */}
-        <MegadraftEditor
+        <div id="editorContainer">        
+          <MegadraftEditor
           editorState={this.state.editorState}
           onChange={this.onChange} />
-        <button onClick={this.saveContent}>Save</button>
+        </div>
+
+        <button onClick={this.saveContent} className="prompt-button">Save</button>
         <CreativeWritingPrompt />
         <Genre />
       </div>

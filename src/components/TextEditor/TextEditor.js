@@ -16,6 +16,16 @@ class TextEditor extends Component {
     super(props);
     this.state = { editorState: editorStateFromRaw(null), title: ''};
   }
+  componentDidMount(){
+    this.clearPinnedPrompt();
+  }
+  clearPinnedPrompt = () => {
+    let action = {
+      type: 'PIN_PROMPT',
+      payload: []
+    }
+    this.props.dispatch(action);
+  }
   onChange = (editorState) => {  //on change in the editor
     this.setState({ editorState });
   }

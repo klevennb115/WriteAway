@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
+import { editorStateFromRaw } from "megadraft";
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,7 +10,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import IndividualEntries from './IndividualEntries';
+var moment = require('moment');
 const styles = theme => ({
     root: {
         width: '100%',
@@ -33,84 +37,69 @@ const rows = [
     createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-function SimpleTable(props) {
-    const { classes } = props;
 
-    return (
-        <Paper className={classes.root}>
-            <Table className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat (g)</TableCell>
-                        <TableCell align="right">Carbs (g)</TableCell>
-                        <TableCell align="right">Protein (g)</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map(row => (
-                        <TableRow key={row.id}>
-                            <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </Paper>
-    );
-}
-class WritingEntries extends Component {
+class WritingEntries2 extends Component {
     componentDidMount() {
         this.getEntries();
     }
     getEntries = () => {
         this.props.dispatch({ type: 'GET_ENTRIES' });
         console.log(this.props.entry);
-
     }
-    specificWritings = () => {
+    SimpleTable =() => {
+        const { classes } = this.props;
         console.log(this.props.entry);
-
-        // return this.props.entry.map((story, i) => {
-        //     return <SpecificWritings history={this.props.history} key={i} story={story} />
-        // })
-
+        
+        return (
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell >Title</TableCell>
+                            <TableCell >Genre</TableCell>
+                            <TableCell>Date</TableCell>
+                            <TableCell>Prompt</TableCell>
+                            <TableCell>Edit</TableCell>
+                            <TableCell >Delete</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        
+                        {this.populateTable()}
+                        
+                    </TableBody>
+                </Table>
+            </Paper>
+        );
     }
-    onRowsDelete = () => {
-        console.log('hi');
+    populateTable = () => {
+        
+        return this.props.entry.map((row, i) => {
 
-    }
-
-    render() {
+            return (<IndividualEntries history={this.props.history} key={i} row={row} />)
+    })}
+    render(){
         return (
             <div>
-                {this.specificWritings()}
-
-                {this.props.entry.length !== 1 && <MaterialDatatable
-                    title={"Your Entries"}
-                    data={this.props.entry}
-                    columns={columns}
-                    options={options}
-                // onRowsDelete={this.onRowsDelete}
-                />}
+                
+                {this.props.entry.length !== 1 && 
+                    this.SimpleTable()}
             </div>
 
         )
     }
 }
 
-SimpleTable.propTypes = {
+WritingEntries2.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 const mapStoreToProps = reduxStore => ({
     entry: reduxStore.entry,
+    // story: reduxStore.story
 })
-export default connect(mapStoreToProps)(WritingEntries);
 
-export default withStyles(styles)(SimpleTable);
+export default compose(
+    withStyles(styles),
+    connect(mapStoreToProps)
+)(WritingEntries2)
+

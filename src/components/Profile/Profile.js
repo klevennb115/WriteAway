@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import WritingEntries from './WritingEntries/WritingEntries';
+import WritingEntries2 from './WritingEntries/WritingEntries2';
 import Overview from './Overview';
 import Stats from './Stats';
 
@@ -11,7 +11,7 @@ class Profile extends Component {
             <div>
                 <Overview />
                 <Stats />
-                <WritingEntries history={this.props.history} />
+                <WritingEntries2 history={this.props.history} />
             </div>
             
         )

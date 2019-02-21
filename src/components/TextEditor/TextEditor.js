@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import PromptButton from '../TextEditor/TextEditorPrompts/PromptButton'
 import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWritingPrompt';
 import Genre from '../Genre/Genre';
+import PinnedPrompt from './TextEditorPrompts/PinnedPrompt';
 var moment = require('moment');  //needed to timestamp submission
 
 class TextEditor extends Component {
@@ -65,6 +66,8 @@ class TextEditor extends Component {
         
       
         <PromptButton />
+        <div className="pinned-content"><PinnedPrompt /></div>
+        
         <div id="editorContainer">        
           <MegadraftEditor
           editorState={this.state.editorState}

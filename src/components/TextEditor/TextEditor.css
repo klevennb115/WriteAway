@@ -29,3 +29,12 @@ input[type=text]:focus {
     width: 300px;
     margin-right: 200px;
 }
+
+.pinned-content {
+    /* justify-content: center; */
+    /* float: center; */
+    margin-bottom: 25px;
+    outline: 5px;
+    justify-content: flex-end;
+    margin-left: 400px;
+}

@@ -1,14 +1,29 @@
-div {background-color: burlywood;}
+/* div {background-color: burlywood;} */
 
-#editorContainer{
+/* #editorContainer{
     background-color: black;
+} */
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+.title {
+    width: 350px;
+    height: 50%;
+    /* align-items: center; */
+    font-size: 25px;
+    margin-top: 16px
 }
 
-
-
-
-
-.prompt-button {
+.editor-header {
+    /* flex-direction: row; */
+    display: flex;
+    flex-wrap: nowrap;
+}
+.header {
+    justify-content: space-around;
+    
+}
+.save-button {
     float: right;
     height: 100px;
     width: 300px;

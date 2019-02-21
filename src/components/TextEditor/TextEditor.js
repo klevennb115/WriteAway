@@ -5,7 +5,7 @@ import './TextEditor.css';
 import { editorStateToJSON } from 'megadraft/lib/utils';
 import {connect} from 'react-redux';
 // import Timer from '../Timer/Timer';
-// import PromptButton from '../TextEditor/TextEditorPrompts/PromptButton'
+import PromptButton from '../TextEditor/TextEditorPrompts/PromptButton'
 import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWritingPrompt';
 import Genre from '../Genre/Genre';
 var moment = require('moment');  //needed to timestamp submission
@@ -31,13 +31,18 @@ class TextEditor extends Component {
         alert("Make sure to name your story!");;
     }
   }
- 
+ countWords = (s) => {   //word counter found on stack overflow. Counts line breaks as 16 words.
+     s = s.replace(/(^\s*)|(\s*$)/gi, "");//exclude  start and end white-space
+     s = s.replace(/[ ]{2,}/gi, " ");//2 or more space to 1
+     s = s.replace(/\n /, "\n"); // exclude newline with a start spacing
+     return s.split(' ').filter(function (str) { return str !== ""; }).length;
+      //return s.split(' ').filter(String).length; - this can also be used
+ }
   wordsLeft = () => {
     let wordsInEditor = editorStateToJSON(this.state.editorState);
-    console.log('in wordsLeft',  JSON.parse(wordsInEditor).blocks);
-    
+    let wordsCounted = this.countWords(wordsInEditor);
     let wordsTilGoal = 500;
-    return wordsTilGoal - (wordsInEditor.split(' ').length-66); //66 is the length of the JSON string
+    return wordsTilGoal - (wordsCounted-21); //66 is the length of the JSON string
   }
   titleChange = (event) => {
     this.setState({ title: event.target.value })
@@ -45,22 +50,28 @@ class TextEditor extends Component {
  
   render() {
     return (
-      <div>
+      <div >
+        <div className="editor-header header">
+          <div className="editor-header">
+            <h2>Title:</h2>
+            <input className="title" placeholder="Title" onChange={this.titleChange}></input>
+          </div>
+          
           <h3>Words Til Goal: {this.wordsLeft()}</h3>
+        </div>
+        
           {/* <Timer onSaveClick={this.handleTimeChange} 
             saveContent={this.saveContent}/> */}
-        <input placeholder="Title" onChange={this.titleChange}></input>
-        <p>
-          Write Below
-        </p>
-        {/* <PromptButton /> */}
+        
+      
+        <PromptButton />
         <div id="editorContainer">        
           <MegadraftEditor
           editorState={this.state.editorState}
           onChange={this.onChange} />
         </div>
 
-        <button onClick={this.saveContent} className="prompt-button">Save</button>
+        <button onClick={this.saveContent} className="save-button">Save</button>
         <CreativeWritingPrompt />
         <Genre />
       </div>

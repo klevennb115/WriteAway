@@ -20,12 +20,14 @@ router.post('/', (req, res) => {
     const contents = JSON.parse(req.body.text);
     const title = req.body.title;
     const genre = req.body.genre;
+    const entryLength = req.body.entry_length;
+    const entryPrompt = req.body.entry_prompt;
     const subTime = req.body.subTime;
     console.log(genre);
     
     // const title = req.body
-    const queryText = 'INSERT INTO writing_entry (user_username, entry_name, entry_contents,entry_genre,submission_time) VALUES ($1, $2, $3, $4, $5);';
-    pool.query(queryText, [userID, title, contents, genre, subTime])
+    const queryText = 'INSERT INTO writing_entry (user_username, entry_name, entry_contents,entry_genre, entry_length, entry_prompt, submission_time) VALUES ($1, $2, $3, $4, $5, $6, $7);';
+    pool.query(queryText, [userID, title, contents, genre, entryLength, entryPrompt, subTime])
         .then(() => { res.sendStatus(201); })
         .catch((err) => { next(err); });
 });

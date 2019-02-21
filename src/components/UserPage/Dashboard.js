@@ -20,9 +20,9 @@ class Dashboard extends Component{
                 <Link className="nav-link link" to="/write">
                     Write Away!
                 </Link>
-                <Link className="nav-link link" to="/add-writing">
+                {/* <Link className="nav-link link" to="/add-writing">
                     Add Writing Manually
-                </Link>
+                </Link> */}
                 
             </div>
             

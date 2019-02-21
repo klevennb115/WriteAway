@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import promptSaga from '../../../redux/sagas/promptSaga';
 import swal from 'sweetalert';
+import PropTypes from 'prop-types'; //materialUI stuff
+// import classNames from ' ';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import brown from '@material-ui/core/colors/brown';
 
 class PromptButton extends Component {
     constructor(props){

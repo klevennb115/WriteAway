@@ -25,6 +25,7 @@ class EditEntry extends Component {
         console.log(action);
         
         this.props.dispatch(action);
+        this.props.history.push("/profile")
     }
 
     render() {

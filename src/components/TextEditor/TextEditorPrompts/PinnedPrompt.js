@@ -29,9 +29,6 @@ class PinnedPrompt extends Component {
         return (
             <div>
                 <Paper className={classes.root} elevation={1}>
-                    {/* <Typography variant="h5" component="h3">
-                        This is a sheet of paper.
-        </Typography> */}
                     <Typography component="p">
                         {this.props.pinnedPrompt}
         </Typography>

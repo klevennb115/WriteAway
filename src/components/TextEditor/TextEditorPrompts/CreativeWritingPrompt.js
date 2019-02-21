@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import promptSaga from '../../../redux/sagas/promptSaga';
-import swal from 'sweetalert';
+
 import './CreativeWritingPrompt.css';
 
 class CreativeWritingPrompt extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            promptClicked:false
+        }
+    }
     componentDidMount() {
         this.getPrompts();
     }
@@ -13,7 +18,7 @@ class CreativeWritingPrompt extends Component {
     }
 
     showPrompt = (event) => {
-        // swal ("Hello World");
+        this.setState({ promptClicked: !this.state.promptClicked});
         let selectedPrompts = [];
         this.props.prompt.length !== 0 && console.log(this.props.prompt);
         for (const entry of this.props.prompt) {
@@ -24,7 +29,6 @@ class CreativeWritingPrompt extends Component {
         this.shufflePrompts(selectedPrompts);
     }
     shufflePrompts = (array) => {  //this is the Durstenfeld shuffle
-        let counter = 0;
         for (let i = array.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1));
             let temp = array[i];
@@ -32,80 +36,19 @@ class CreativeWritingPrompt extends Component {
             array[j] = temp;
         };
 
-        swal("What kind of prompt would you like?", {
-            buttons: {
-                cancel: "Cancel",
-                creative: {
-                    text: "Creative Prompt",
-                    value: "creative",
-                },
-                journal: {
-                    text: "Journal Prompt",
-                    value: "journal",
-                },
-                scifi: {
-                    text: "Science-Fiction/Fantasy Prompt",
-                    value: "scifi",
-                },
-                defeat: true,
-            },
-        }).then((value) => {
-            switch (value) {
-                case "journal":
-                    swal("Pikachu fainted! You gained 500 XP!");
-                    counter += 1;
-                    console.log(counter);
-                    
-                    break;
-            
-                default:swal("Got away safely!")
-                    break;
-            }
 
-
-
-
-
-
-        // swal(array[counter].text, {
-        //     buttons: {
-        //         cancel: "Cancel",
-        //         catch: {
-        //             text: "Throw Pokéball!",
-        //             value: "catch",
-        //         },
-        //         defeat: true,
-        //     },
-        // })
-        //     .then((value) => {
-        //         switch (value) {
-
-        //             case "defeat":
-        //                 swal("Pikachu fainted! You gained 500 XP!");
-        //                 break;
-
-        //             case "catch":
-        //                 swal("Gotcha!", "Pikachu was caught!", "success");
-        //                 break;
-
-        //             default:
-        //             break;
-        //                 // swal("Got away safely!");
-        //         }
-        //     });
-
-        // return array;
         
-    })}
+    }
     render(){
         // this.prompt.length !== 0 && this.showPrompt()
+
         return(
             <div>
-                <button onClick={this.showPrompt} value='1'>Creative Prompt</button>
-                <button onClick={this.showPrompt} value='6'>Journal Prompt</button>
-                <button onClick={this.showPrompt} value='2'>Science-Fiction/Fantasy Prompt</button>
-                {/* <button onClick={this.showPrompt} value='3'>Fantasy Prompt</button> */}
-                <p className="blockquote before">Blah Blah Blah</p>
+                <button onClick={this.showPrompt} value='1'>Show Me A Prompt</button>
+                {this.state.promptClicked?<div>
+
+                </div>: <h1>La</h1>}
+                
             </div>
         )
     }
@@ -115,3 +58,6 @@ const mapStoreToProps = state => ({
     prompt: state.prompt,
 });
 export default connect(mapStoreToProps)(CreativeWritingPrompt);
+
+
+//<p className="blockquote before"></p>

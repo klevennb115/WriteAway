@@ -4,136 +4,150 @@ import { connect } from 'react-redux';
 import swal from 'sweetalert';
 
 class PromptButton extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            genre: []
+        }
+    }
     componentDidMount() {
         this.getPrompts();
     }
     getPrompts = () => {
         this.props.dispatch({ type: 'GET_ADVICE' });  //should technically be called GET_PROMPTS
     }
-
     showPrompt = () => {
-        let counter = 0;
-        let creativePrompts = [];
+        let fantasyPrompts = [];
         let journalPrompts = [];
         let scifiPrompts = [];
+        let romancePrompts = [];
+        let thrillerPrompts = [];
         for (const entry of this.props.prompt) {  //sorts prompts by type
-            if (entry.type_of_prompt === 1) {
-                creativePrompts.push(entry);
+            if (entry.type_of_prompt === 2) {
+                scifiPrompts.push(entry);
             } else if (entry.type_of_prompt === 6) {
                 journalPrompts.push(entry);
-            } else if (entry.type_of_prompt === 2) {
-                scifiPrompts.push(entry);
-            }}
-        this.shufflePrompts(journalPrompts);  //shuffles prompts so they don't get stale 
-        this.shufflePrompts(creativePrompts);
-        this.shufflePrompts(scifiPrompts);
-        swal("What kind of prompt would you like?", {
-            showCancelButton: true,
-            buttons: {
-                creative: {
-                    text: "Creative Prompt",
-                    value: "creative",
-                },
-                journal: {
-                    text: "Journal Prompt",
-                    value: "journal",
-                },
-                scifi: {
-                    text: "Sci-Fi/Fantasy Prompt",
-                    value: "scifi",
-                },
-                cancel: "Cancel"
-            },
-        }).then((value) => {
-            switch (value) {
-                case "journal":
-                    // swal("Pikachu fainted! You gained 500 XP!");
-                    console.log(counter);
-                    this.promptAlert(journalPrompts[counter]);
-                    counter +=1;
-                    console.log(counter);
-                    
-                    break;
-
-                default: swal("Got away safely!")
-                    break;
+            } else if (entry.type_of_prompt === 3) {
+                fantasyPrompts.push(entry);
+            } else if (entry.type_of_prompt === 8) {
+                romancePrompts.push(entry);
+            } else if (entry.type_of_prompt === 9) {
+                thrillerPrompts.push(entry);
             }
+        }
 
+            swal("What kind of prompt would you like?", {
+                buttons: {
+                    creative: {
+                        text: "Creative Prompt",
+                        value: "creative",  //case looks for values
+                    },
+                    journal: {
+                        text: "Journal Prompt",
+                        value: "journal",
+                    },
+                    cancel: "Cancel"
+                },
+            }).then((value) => {
+                switch (value) {
+                    case "journal":
+                        this.setState({
+                            genre: journalPrompts
+                        });
+                        this.promptAlert(journalPrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                        break;
+                    case "creative":
+                        swal("What genre are you looking for?",{
+                            buttons:{
+                                fantasy: {
+                                    text: "Fantasy",
+                                    value: "fantasy"
+                                },
+                                romance: {
+                                    text: "Romance",
+                                    value: "romance"
+                                },
+                                scifi: {
+                                    text: "Science Fiction",
+                                    value: "scifi"
+                                },
+                                thriller: {
+                                    text: "Thriller",
+                                    value: "thriller"
+                                },
+                                cancel: true
+                            }
+                        }).then((value) => {
+                            switch (value) {
 
-
-        })
-    }
-    promptAlert = (input) => {
-        // swal(input, {
-        //     buttons: {
-        //         creative: {
-        //             text: "Creative Prompt",
-        //             value: "creative",
-        //         }}})
-        swal("What kind of prompt would you like?", {
-            showCancelButton: true,
+                                case "fantasy":
+                                    this.setState({
+                                        genre: fantasyPrompts
+                                    });
+                                    this.promptAlert(fantasyPrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                                    break;
+                                case "romance":
+                                    this.setState({
+                                        genre: romancePrompts
+                                    });
+                                    this.promptAlert(romancePrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                                    break;
+                                case "scifi":
+                                    this.setState({
+                                        genre: scifiPrompts
+                                    });
+                                    this.promptAlert(scifiPrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                                    break;
+                                case "thriller":
+                                    this.setState({
+                                        genre: thrillerPrompts
+                                    });
+                                    this.promptAlert(thrillerPrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        });
+                        break;
+                    default:
+                        break;
+                }
+    })}
+    promptAlert = (prompt) => {
+        swal(prompt, {
             buttons: {
-                creative: {
-                    text: "Creative Prompt",
-                    value: "creative",
+                cancel: "Cancel",
+                pin: {
+                    text: "Use this prompt",
+                    value: "pin",
+                }, 
+                next: {
+                    value: "next"
                 },
-                journal: {
-                    text: "Journal Prompt",
-                    value: "journal",
-                },
-                scifi: {
-                    text: "Sci-Fi/Fantasy Prompt",
-                    value: "scifi",
-                },
-                cancel: "Cancel"
-            }})
-        
+            },
+        })
+            .then((value) => {
+                switch (value) {
+
+                    case "next":
+                        this.promptAlert(this.state.genre[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text)
+                        break;
+
+                    case "pin":
+                        let action = {
+                            type: "PIN_PROMPT",
+                            payload: prompt
+                        }
+                        this.props.dispatch(action);
+                        break;
+
+                    default:
+                        break;
+                }
+            });
     }
-    shufflePrompts = (array) => {  //this is the Durstenfeld shuffle
-        for (let i = array.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            let temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-    }
-        
-        // return array;
-        // swal("What kind of prompt would you like?", {
-        //     buttons: {
-        //         cancel: "Cancel",
-        //         creative: {
-        //             text: "Creative Prompt",
-        //             value: "creative",
-        //         },
-        //         journal: {
-        //             text: "Journal Prompt",
-        //             value: "journal",
-        //         },
-        //         scifi: {
-        //             text: "Science-Fiction/Fantasy Prompt",
-        //             value: "scifi",
-        //         },
-        //         defeat: true,
-        //     },
-        // }).then((value) => {
-        //     switch (value) {
-        //         case "journal":
-        //             swal("Pikachu fainted! You gained 500 XP!");
-        //             counter += 1;
-        //             console.log(counter);
 
-        //             break;
-
-        //         default: swal("Got away safely!")
-        //             break;
-        //     }
-
-
-
-        // })
-    }
     render() {
-        // this.prompt.length !== 0 && this.showPrompt()
         return (
             <div>
                 <button onClick={this.showPrompt}>I need a prompt!</button>

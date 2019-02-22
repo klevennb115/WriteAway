@@ -10,10 +10,23 @@ class Dashboard extends Component{
         };
         this.props.dispatch(action);
     }
+    getAffirmation = () => {
+        let advicePrompts = [];
+        for (const entry of this.props.prompt) {  //sorts prompts by type
+            if (entry.type_of_prompt === 4) {
+                advicePrompts.push(entry);
+            }}
+        console.log(advicePrompts);
+        
+        return advicePrompts[Math.floor(Math.random() * Math.floor(advicePrompts.length))]   
+    }
     render(){
         return(
             <div>
-                <div><h5>{this.props.prompt[0].text}</h5></div>
+                {/* <div><h5>{this.props.prompt.length !== 0 && this.getAffirmation()}</h5></div> */}
+                <div><h5>{this.props.prompt[0].text}</h5>
+                    {/* <h5>{this.props.prompt.length !== 0 && this.getAffirmation()}</h5> */}
+                </div>
                 <Link className="nav-link link" to="/profile">
                     Profile
                 </Link>

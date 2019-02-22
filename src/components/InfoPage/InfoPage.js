@@ -6,17 +6,16 @@ import React from 'react';
 // or even care what the redux state is, so it doesn't need 'connect()'
 const InfoPage = () => (
   <div>
-    <p>
-      Technologies Used:
-
-      React.js
-      MegadraftEditor
-      Node.js/Express.js
-      Material UI
-      HTML/css
-      Ajax/Axios
-      PostgreSQL
-    </p>
+    
+    <h1>Technologies Used:</h1>  
+    <h3>React.js </h3>
+    <h3>MegadraftEditor</h3>
+    <h3>Node.js/Express.js</h3>
+    <h3>Material UI</h3>
+    <h3>HTML/CSS</h3>
+    <h3>Ajax/Axios</h3>
+    <h3>PostgreSQL</h3>
+  
   </div>
 );
 

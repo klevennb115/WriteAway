@@ -6,14 +6,14 @@ import './TextEditor.css';
 import {connect} from 'react-redux';
 // import Timer from '../Timer/Timer';
 import PromptButton from '../TextEditor/TextEditorPrompts/PromptButton'
-import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWritingPrompt';
+// import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWritingPrompt';
 import Genre from '../Genre/Genre';
 import PinnedPrompt from './TextEditorPrompts/PinnedPrompt';
 import PropTypes from 'prop-types'; //materialUI stuff
 // import classNames from ' ';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+// import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import brown from '@material-ui/core/colors/brown';
+// import brown from '@material-ui/core/colors/brown';
 
 var moment = require('moment');  //needed to timestamp submission
 

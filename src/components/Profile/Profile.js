@@ -10,7 +10,7 @@ class Profile extends Component {
         return(
             <div>
                 <Overview />
-                <Stats />
+                {/* <Stats /> */}
                 <WritingEntries2 history={this.props.history} />
             </div>
             

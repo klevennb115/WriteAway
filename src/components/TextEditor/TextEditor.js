@@ -62,7 +62,6 @@ class TextEditor extends Component {
   }
   buttonStyling = () => {
       const { classes } = this.props;
-
       return (
         <div>
           <Button variant="contained" onClick={this.saveContent} color="primary" className={this.button}>
@@ -115,7 +114,7 @@ class TextEditor extends Component {
         </div>
 
         {this.buttonStyling()}
-        <CreativeWritingPrompt />
+        {/* <CreativeWritingPrompt /> */}
         <Genre />
       </div>
     );

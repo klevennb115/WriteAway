@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react';  //This entire component isn't being used
 import { connect } from 'react-redux';
 import SpecificWritings from './SpecificWritings';
 

@@ -29,7 +29,10 @@ router.post('/', (req, res) => {
     const queryText = 'INSERT INTO writing_entry (user_username, entry_name, entry_contents,entry_genre, entry_length, entry_prompt, submission_time) VALUES ($1, $2, $3, $4, $5, $6, $7);';
     pool.query(queryText, [userID, title, contents, genre, entryLength, entryPrompt, subTime])
         .then(() => { res.sendStatus(201); })
-        .catch((err) => { next(err); });
+        .catch((err) => { 
+            console.log(err);
+            res.sendStatus(500);
+         });
 });
 
 router.delete('/:id', (req,res) =>{

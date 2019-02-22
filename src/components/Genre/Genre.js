@@ -24,7 +24,7 @@ class Genre extends Component {
     render() {
         return (
             <div>
-                <h4>Genre</h4>
+                <h4>Set Genre:</h4>
                 <select value={this.state.value}
                     onChange={this.handleChange}>
                     <option value='Uncategorized'>Uncategorized</option>

@@ -7,7 +7,15 @@ import React from 'react';
 const InfoPage = () => (
   <div>
     <p>
-      Info Page
+      Technologies Used:
+
+      React.js
+      MegadraftEditor
+      Node.js/Express.js
+      Material UI
+      HTML/css
+      Ajax/Axios
+      PostgreSQL
     </p>
   </div>
 );

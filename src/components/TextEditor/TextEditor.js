@@ -17,18 +17,22 @@ import Button from '@material-ui/core/Button';
 
 var moment = require('moment');  //needed to timestamp submission
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
+// const styles = theme => ({
+//   button: {
+//     margin: theme.spacing.unit,
+//   },
+//   input: {
+//     display: 'none',
+//   },
+// });
 class TextEditor extends Component {
   constructor(props) {
     super(props);
-    this.state = { editorState: editorStateFromRaw(null), title: '',entry_length: ''};
+    this.state = { editorState: editorStateFromRaw(null), 
+      title: '',
+      entry_length: '',
+      time: moment()
+  };
   }
   componentDidMount(){
     this.clearPinnedPrompt();
@@ -44,10 +48,12 @@ class TextEditor extends Component {
     this.setState({ editorState });
   }
   saveContent = () => {
+    let endTime = moment();
+    let newTime = endTime.diff(this.state.time);
     const pinPrompt = this.props.pinnedPrompt;
     // // pinPrompt = this.props.pinnedPrompt;
     const {editorState} = this.state;
-    const content = { text: editorStateToJSON(editorState), title: this.state.title, genre: this.props.genreSave, entry_length: this.wordsLeft(), entry_prompt: pinPrompt, subTime: moment()._d };
+    const content = { text: editorStateToJSON(editorState), title: this.state.title, genre: this.props.genreSave, time_length: newTime, entry_length: this.wordsLeft(), entry_prompt: pinPrompt, subTime: moment()._d };
       //once tags are added, make sure all info is added before you can save
     console.log(content);
     console.log(this.props.pinnedPrompt);
@@ -112,7 +118,7 @@ class TextEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange} />
         </div>
-
+        <button onClick={this.timeTest}>Time</button>
         {this.buttonStyling()}
         {/* <CreativeWritingPrompt /> */}
         <Genre />

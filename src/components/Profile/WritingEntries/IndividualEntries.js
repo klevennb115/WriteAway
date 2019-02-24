@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import { editorStateFromRaw } from "megadraft";
 import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
+// import Table from '@material-ui/core/Table';
+// import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
+// import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 var moment = require('moment');
 const styles = theme => ({
     root: {
@@ -47,6 +47,7 @@ class IndividualEntries extends Component {
                     </TableCell>
                     <TableCell align="right">{this.props.row.entry_genre}</TableCell>
                     <TableCell align="right">{moment(this.props.row.submission_time).format('MMMM Do YYYY')}</TableCell>
+                    <TableCell align="right">{moment.utc(this.props.row.entry_time_length).format("HH:mm:ss")}</TableCell>
                     <TableCell align="right">{this.props.row.entry_prompt}</TableCell>
                     <TableCell align="right"><button onClick={this.editEntry}>Edit</button></TableCell>
                     <TableCell align="right"><button onClick={this.deleteEntry}>Delete</button></TableCell>

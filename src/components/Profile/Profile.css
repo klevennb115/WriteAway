@@ -1,0 +1,8 @@
+.profile {
+  display: flex; /* or inline-flex */
+  /* justify-Content: 'space-between' */
+}
+.overview{
+    display: flex;
+    flex-wrap: wrap 
+}

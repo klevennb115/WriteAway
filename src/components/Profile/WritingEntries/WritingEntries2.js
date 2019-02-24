@@ -16,10 +16,18 @@ const styles = theme => ({
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
+        // flex: 1,
+        // flexDirection: 'row',
+        // justifyContent: 'flex-end',
     },
     table: {
         minWidth: 700,
+        //         flex: 1,
+        // flexDirection: 'row',
+        // justifyContent: 'flex-end',
+        // align: "right"
     },
+
 });
 
 
@@ -36,6 +44,7 @@ class WritingEntries2 extends Component {
         console.log(this.props.entry);
         
         return (
+
             <Paper className={classes.root}>
                 <Table className={classes.table}>
                     <TableHead>

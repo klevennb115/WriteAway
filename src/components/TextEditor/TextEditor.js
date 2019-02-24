@@ -87,7 +87,7 @@ class TextEditor extends Component {
   wordsLeft = () => {
     let wordsInEditor = editorStateToJSON(this.state.editorState);
     let wordsCounted = this.countWords(wordsInEditor);
-    let wordsTilGoal = 500;
+    let wordsTilGoal = this.props.user.word_goal;
     // this.setState({ entry_length: wordsTilGoal - (wordsCounted - 21) })
     return wordsTilGoal - (wordsCounted-21); //21 is the length of the JSON string
   }
@@ -131,6 +131,7 @@ TextEditor.propTypes = {
 };
 
 const mapStoreToProps = state => ({
+  user: state.user,
   genreSave: state.genreSave,
   pinnedPrompt: state.pinnedPrompt
 });

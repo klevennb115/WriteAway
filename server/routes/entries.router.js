@@ -9,10 +9,11 @@ router.get('/', (req, res) => {
     const userID = req.user.id;
     console.log(userID);
     const queryText = `SELECT * FROM writing_entry
-WHERE user_username='${userID}';`;
+WHERE user_username='${userID}' ORDER BY id;`;
     pool.query(queryText)
         .then(results => res.send(results.rows))
-        .catch((err) => { next(err); });
+        .catch((err) => { console.log(err);
+         });
 });
 
 router.post('/', (req, res) => {

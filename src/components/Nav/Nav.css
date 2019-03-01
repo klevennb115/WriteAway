@@ -13,14 +13,14 @@
 
 .nav {
   overflow: hidden;
-  background-color:#857E7B;
+  background-color:sienna;
   /* height: ; */
 }
 
 .nav-link {
   float: left;
   color: #f2f2f2;
-  background-color: #857E7B;
+  background-color: sienna;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;

@@ -155,7 +155,7 @@ class PromptButton extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.showPrompt}>I need a prompt!</button>
+                <button onClick={this.showPrompt} className="ph-button">I need a prompt!</button>
             </div>
         )
     }

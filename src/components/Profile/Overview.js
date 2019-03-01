@@ -45,7 +45,7 @@ class Overview extends Component {
                     <h4 >Longest Streak: {this.props.user.current_streak}</h4>
                     <h4 >Total number of entries: {this.props.entry.length}</h4>
                     <h4 >Average Writing Time: {this.timeAvg()}</h4>
-                    <h4 >Word Goal: {this.props.user.word_goal} <button onClick={this.editGoal}>Edit</button></h4>
+                    <h4 >Word Goal: {this.props.user.word_goal} <button onClick={this.editGoal} >Edit</button></h4>
                 </div>
 
             </div>

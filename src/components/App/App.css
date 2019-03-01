@@ -33,6 +33,10 @@ input {
   cursor: pointer;
 }
 
+.additional-log-out{
+    margin-top: 150px;
+}
+
 .log-in:hover, .log-out:hover, .register:hover {
   background-color: #008183;
 }

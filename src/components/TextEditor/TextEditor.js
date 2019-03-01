@@ -61,22 +61,13 @@ class TextEditor extends Component {
     if (this.state.title !== '') {
       const action = {type: 'ADD_ENTRY', payload: content}
       this.props.dispatch(action);
+      this.props.history.push("/home");
     } else {
         alert("Make sure to name your story!");;
     }
-    this.props.history.push("/home")
+    // this.props.history.push("/home")
   }
-  buttonStyling = () => {
-      const { classes } = this.props;
-      return (
-        <div>
-          <Button variant="contained" onClick={this.saveContent} color="primary" className={this.button}>
-            Save
-          </Button>
-        </div>
-      );
-  }
-  
+
  countWords = (s) => {   //word counter found on stack overflow. Counts line breaks as 16 words.
      s = s.replace(/(^\s*)|(\s*$)/gi, "");//exclude  start and end white-space
      s = s.replace(/[ ]{2,}/gi, " ");//2 or more space to 1
@@ -87,9 +78,15 @@ class TextEditor extends Component {
   wordsLeft = () => {
     let wordsInEditor = editorStateToJSON(this.state.editorState);
     let wordsCounted = this.countWords(wordsInEditor);
-    let wordsTilGoal = this.props.user.word_goal;
+    let wordsTilGoal = this.props.user.word_goal - (wordsCounted - 21);  //21 is the length of the JSON string
+    if (wordsTilGoal <= 0) {
+      return 'Goal Reached!'  //need to fix
+    } else {
+      return wordsTilGoal
+    }
+
     // this.setState({ entry_length: wordsTilGoal - (wordsCounted - 21) })
-    return wordsTilGoal - (wordsCounted-21); //21 is the length of the JSON string
+    // return wordsTilGoal - (wordsCounted-21); //21 is the length of the JSON string
   }
   titleChange = (event) => {
     this.setState({ title: event.target.value })
@@ -106,11 +103,8 @@ class TextEditor extends Component {
           
           <h3>Words Til Goal: {this.wordsLeft()}</h3>
         </div>
-          {/* <Timer onSaveClick={this.handleTimeChange} 
-            saveContent={this.saveContent}/> */}
-        
       
-        <PromptButton />
+        
         <div className="pinned-content"><PinnedPrompt /></div>
         
         <div id="editorContainer">        
@@ -118,10 +112,14 @@ class TextEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange} />
         </div>
-        <button onClick={this.timeTest}>Time</button>
-        {this.buttonStyling()}
-        {/* <CreativeWritingPrompt /> */}
-        <Genre />
+        {/* <button onClick={this.timeTest}>Time</button> */}
+        <div className="text-editor-buttons">
+          {/* {this.buttonStyling()} */}
+          <PromptButton />
+          <Genre />
+          <button onClick={this.saveContent} className="ph-button">Save</button>
+        </div>
+        
       </div>
     );
   }

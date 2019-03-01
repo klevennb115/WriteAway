@@ -1,4 +1,4 @@
-const timeReducer = (state = [0], action) => {
+const timeReducer = (state = 0, action) => {
     switch (action.type) {
         case 'INCREASE_TIME':
             console.log(state);

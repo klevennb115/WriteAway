@@ -17,7 +17,7 @@ const UserPage = (props) => (
     </h1> */}
     <Dashboard />
     <br /><br /><br /><br /><br />
-    <LogOutButton className="log-in" />
+    <LogOutButton className="log-in additional-log-out" />
   </div>
 );
 

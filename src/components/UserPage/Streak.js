@@ -101,7 +101,7 @@ class Streak extends Component{
         }
         return(
             <div>
-                <h1 id="welcome">
+                <h1 className="advice">
                     Welcome, {this.props.user.username}! {streak ? `You have written ${streak} days in a row!` : 'Time to start a new writing streak!'}
                 </h1>
             </div>

@@ -24,29 +24,24 @@ class Dashboard extends Component{
         return advicePrompts[Math.floor(Math.random() * Math.floor(advicePrompts.length))].text  
     }
     buttonProfileNav = () => {
-        console.log('hi');
-        
+
         this.props.history.push("/profile");
     }
     render(){
-        console.log('test');
         return(
-            <div>
-                {/* <div><h5>{this.props.prompt.length !== 0 && this.getAffirmation()}</h5></div> */}
-                 <div>{/*<h5>{this.props.prompt.length !== 0 && this.props.prompt[0].text}</h5> */}
+            <div >
+                <div className="advice">{/*<h5>{this.props.prompt.length !== 0 && this.props.prompt[0].text}</h5> */}
                     <h5>{this.props.prompt.length !== 0 && this.getAffirmation()}</h5>
                 </div>
-                <Link className="nav-link link" to="/profile">
-                    Profile
-                </Link>
-                <Link className="nav-link link" to="/write">
-                    Write Away!
-                </Link>
-                {/* <Link className="nav-link link" to="/add-writing">
-                    Add Writing Manually
-                </Link> */}
+                <div className="dashboard-buttons">
+                    <Link className="ph-button" to="/profile">
+                        Profile
+                    </Link>
+                    <Link className="ph-button" to="/write">
+                        Write Away!
+                    </Link>
+                </div>
 
-                <button className="test">TEST</button>
             </div>
             
             

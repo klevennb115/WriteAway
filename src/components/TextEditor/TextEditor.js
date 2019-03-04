@@ -31,7 +31,8 @@ class TextEditor extends Component {
     this.state = { editorState: editorStateFromRaw(null), 
       title: '',
       entry_length: '',
-      time: moment()
+      time: moment(),
+      word_length: 0
   };
   }
   componentDidMount(){
@@ -53,7 +54,7 @@ class TextEditor extends Component {
     const pinPrompt = this.props.pinnedPrompt;
     // // pinPrompt = this.props.pinnedPrompt;
     const {editorState} = this.state;
-    const content = { text: editorStateToJSON(editorState), title: this.state.title, genre: this.props.genreSave, time_length: newTime, entry_length: this.wordsLeft(), entry_prompt: pinPrompt, subTime: moment()._d };
+    const content = { text: editorStateToJSON(editorState), title: this.state.title, genre: this.props.genreSave, time_length: newTime, entry_length: this.countWords(editorStateToJSON(this.state.editorState)), entry_prompt: pinPrompt, subTime: moment()._d };
       //once tags are added, make sure all info is added before you can save
     console.log(content);
     console.log(this.props.pinnedPrompt);

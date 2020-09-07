@@ -11,16 +11,13 @@ class Genre extends Component {
     }
     changeGenre = () => {
         this.props.dispatch({ type: 'GET_GENRES' });
-        // <Genre />
     }
     handleChange = (event) => {
         const action = {type: "SAVE_GENRE", payload: event.target.value};
-        console.log(action);
         this.props.dispatch(action);
-        this.setState({value: event.target.value});
-        console.log(this.state);
-        
+        this.setState({value: event.target.value});        
     }
+
     render() {
         return (
             <div>
@@ -31,15 +28,12 @@ class Genre extends Component {
                     {this.props.genres.map((genre, i) => {
                         return <option key={i} value={genre.types}>{genre.types}</option>
                     })}
-                    
-
                 </select> 
             </div>
         )
     }
 }
 const mapStoreToProps = reduxStore => ({
-    // reduxStore,
     genres : reduxStore.genres
 })
 export default connect(mapStoreToProps)(Genre);

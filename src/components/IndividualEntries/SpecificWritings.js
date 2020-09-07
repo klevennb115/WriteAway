@@ -3,17 +3,14 @@ import { connect } from 'react-redux';
 import { editorStateFromRaw } from "megadraft";
 
 
-class SpecificWritings extends Component {
+class IndividualEntries extends Component {
     editEntry = () => {
         const entryID = this.props.story;
         const rawContents = editorStateFromRaw(JSON.parse(this.props.story.entry_contents));
-        console.log('in editing', rawContents);
         const action = { type: 'EDIT_ENTRY', payload: rawContents };
         const secondAction = { type: 'EDIT_ID', payload: entryID };
         this.props.dispatch(action);
         this.props.dispatch(secondAction);
-    //this will take them to a basic edit page which populates the 
-    //RTE with the text of the entry THEN does a PUT
         this.props.history.push("/edit-writing");
     }
     deleteEntry = () => {
@@ -21,8 +18,6 @@ class SpecificWritings extends Component {
         this.props.dispatch(action);
     }   
     render() {
-        console.log(this.props.story.entry_name);
-        
         return (
             
                 <tr>
@@ -35,7 +30,5 @@ class SpecificWritings extends Component {
         )
     }
 }
-const mapStoreToProps = reduxStore => ({
-    // store =reduxStore,
-})
-export default connect(mapStoreToProps)(SpecificWritings);
+
+export default IndividualEntries;

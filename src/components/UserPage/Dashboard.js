@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { AwesomeButton } from "react-awesome-button";
 import './Dashboard.css';
 
 class Dashboard extends Component{
@@ -12,14 +11,12 @@ class Dashboard extends Component{
         this.props.dispatch(action);
     }
     getAffirmation = () => {
-        // console.log(this.props.prompt);
         
         let advicePrompts = [];
         for (const entry of this.props.prompt) {  //sorts prompts by type
             if (entry.type_of_prompt === 4) {
                 advicePrompts.push(entry);
             }}
-        // console.log(advicePrompts);
         
         return advicePrompts[Math.floor(Math.random() * Math.floor(advicePrompts.length))].text  
     }

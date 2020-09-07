@@ -8,9 +8,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
     const userID = req.user.id;
     console.log(userID);
-    const queryText = `SELECT * FROM writing_entry
-WHERE user_username='${userID}' ORDER BY id;`;
-    pool.query(queryText)
+    const queryText = 'SELECT * FROM writing_entry WHERE user_username=$1 ORDER BY id;';
+    pool.query(queryText, [userID])
         .then(results => res.send(results.rows))
         .catch((err) => { console.log(err);
          });

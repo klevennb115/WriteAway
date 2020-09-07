@@ -40,8 +40,6 @@ class CreativeWritingPrompt extends Component {
         
     }
     render(){
-        // this.prompt.length !== 0 && this.showPrompt()
-
         return(
             <div>
                 <button onClick={this.showPrompt} value='1'>Show Me A Prompt</button>

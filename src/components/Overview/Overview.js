@@ -14,10 +14,8 @@ class Overview extends Component {
     timeAvg = () => {
         let times = 0;
         let numberOfEntries = this.props.entry.length;
-        this.props.entry.map((story) => {
+        this.props.entry.forEach((story) => {
             times += story.entry_time_length
-
-            return console.log(moment.utc(times/numberOfEntries).format("HH:mm:ss"));
         })
         return (moment.utc(times / numberOfEntries).format("HH:mm:ss"));
     }
@@ -31,8 +29,7 @@ class Overview extends Component {
                     payload: {newGoal: value, id: this.props.user.id}
                 }
                 this.props.dispatch(action);
-                window.location.reload();  //reloads so you can see new goal
-                // swal(`Your new goal is: ${value}`);
+                window.location.reload();  //Get rid of this- 2020
             });
     }
 
@@ -54,8 +51,7 @@ class Overview extends Component {
     }
 }
 const mapStoreToProps = reduxStore => ({
-    entry: reduxStore.entry, // only map prompt reducer
+    entry: reduxStore.entry, 
     user: reduxStore.user
-    // another: reduxStore.another,
 })
 export default connect(mapStoreToProps)(Overview);

@@ -16,33 +16,24 @@ const styles = theme => ({
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
-        // flex: 1,
-        // flexDirection: 'row',
-        // justifyContent: 'flex-end',
     },
     table: {
         minWidth: 700,
-        //         flex: 1,
-        // flexDirection: 'row',
-        // justifyContent: 'flex-end',
-        // align: "right"
     },
 
 });
 
 
-class WritingEntries2 extends Component {
+class WritingEntries extends Component {
     componentDidMount() {
         this.getEntries();
     }
     getEntries = () => {
         this.props.dispatch({ type: 'GET_ENTRIES' });
-        console.log(this.props.entry);
     }
     SimpleTable =() => {
         const { classes } = this.props;
-        console.log(this.props.entry);
-        
+
         return (
 
             <Paper className={classes.root}>
@@ -59,9 +50,7 @@ class WritingEntries2 extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        
                         {this.populateTable()}
-                        
                     </TableBody>
                 </Table>
             </Paper>
@@ -75,9 +64,8 @@ class WritingEntries2 extends Component {
     })}
     render(){
         return (
-            <div>
-                
-                {this.props.entry.length !== 1 && 
+            <div>         
+                {this.props.entry.length !== 0 && 
                     this.SimpleTable()}
             </div>
 
@@ -85,7 +73,7 @@ class WritingEntries2 extends Component {
     }
 }
 
-WritingEntries2.propTypes = {
+WritingEntries.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 const mapStoreToProps = reduxStore => ({
@@ -96,5 +84,5 @@ const mapStoreToProps = reduxStore => ({
 export default compose(
     withStyles(styles),
     connect(mapStoreToProps)
-)(WritingEntries2)
+)(WritingEntries)
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 var moment = require('moment'); 
 
-class Streak extends Component{
+class StreakCounter extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -11,8 +11,6 @@ class Streak extends Component{
     }
     componentDidMount() {
         this.getEntries();
-        // this.getLatestDate();
-
     }
     getEntries = () => {
         this.props.dispatch({ type: 'GET_ENTRIES' });
@@ -29,24 +27,17 @@ class Streak extends Component{
         let killswitch = 0;
         const endDay = moment().startOf('day');
         let startDay = moment().startOf('day').subtract(1, 'day');
-        console.log('PREPRE!!!!!!!', killswitch, dates);
         while (killswitch < dates.length) {
-            console.log('PRE!!!!!!!', killswitch, dates);
             for (let i = 0; i < dates.length; i++) {
                 if (dates[i].isBetween(startDay, endDay)) {
                     streak += 1;
                     endDay.subtract(1, 'day');
                     startDay.subtract(1, 'day');
                     killswitch = 0;
-                    console.log(dates[i], '!!!!!!!!!!!!!', streak, endDay, startDay, todayPost);
-
                 } else if (dates[i].isBetween(moment().startOf('day'), moment())) {
                     todayPost += 1;
                     killswitch += 1;
-                    // console.log(moment().startOf('day'), moment());
-
                 } else {
-                    // console.log(dates[i], 'END WHILE', streak, endDay, startDay);
                     killswitch += 1;
                 }//end if/else
 
@@ -70,4 +61,4 @@ const mapStateToProps = state => ({
     entry: state.entry
 });
 
-export default connect(mapStateToProps)(Streak);
+export default connect(mapStateToProps)(StreakCounter);

@@ -2,12 +2,8 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/', (req, res) => {
     const userID = req.user.id;
-    console.log(userID);
     const queryText = 'SELECT * FROM writing_entry WHERE user_username=$1 ORDER BY id;';
     pool.query(queryText, [userID])
         .then(results => res.send(results.rows))
@@ -24,9 +20,7 @@ router.post('/', (req, res) => {
     const entryLength = req.body.entry_length;
     const entryPrompt = req.body.entry_prompt;
     const subTime = req.body.subTime;
-    console.log(timeLength);
-    
-    // const title = req.body
+
     const queryText = 'INSERT INTO writing_entry (user_username, entry_name, entry_contents,entry_genre, entry_time_length, entry_length, entry_prompt, submission_time) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);';
     pool.query(queryText, [userID, title, contents, genre,timeLength, entryLength, entryPrompt, subTime])
         .then(() => { res.sendStatus(201); })
@@ -38,7 +32,6 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req,res) =>{
     let entry = req.params;
-    console.log(entry);
     const queryText = `DELETE FROM "writing_entry" WHERE "id" = $1;`;
     pool.query(queryText, [entry.id]);
     res.sendStatus(200);
@@ -48,7 +41,6 @@ router.put('/:id', (req,res) =>{
     let entry = req.params.id;
     let content = req.body.text;
     let newContent = JSON.parse(content);
-    console.log(content, newContent);
     
     const queryText = `UPDATE "writing_entry" SET "entry_contents"= $1
                        WHERE "id" = $2;`;

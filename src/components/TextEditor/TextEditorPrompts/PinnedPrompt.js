@@ -20,10 +20,6 @@ const styles = theme => ({
     },
 });
 class PinnedPrompt extends Component {
-    constructor(props) {
-        super(props);
-
-    }
     showPrompt = () =>{
         const { classes } = this.props;
         return (

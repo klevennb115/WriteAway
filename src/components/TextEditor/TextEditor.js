@@ -4,27 +4,13 @@ import { editorStateToJSON } from 'megadraft/lib/utils';
 import '../TextEditor/megadraft.css';
 import './TextEditor.css';
 import {connect} from 'react-redux';
-// import Timer from '../Timer/Timer';
 import PromptButton from '../TextEditor/TextEditorPrompts/PromptButton'
-// import CreativeWritingPrompt from '../TextEditor/TextEditorPrompts/CreativeWritingPrompt';
 import Genre from '../Genre/Genre';
 import PinnedPrompt from './TextEditorPrompts/PinnedPrompt';
 import PropTypes from 'prop-types'; //materialUI stuff
-// import classNames from ' ';
-// import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-// import brown from '@material-ui/core/colors/brown';
 
 var moment = require('moment');  //needed to timestamp submission
 
-// const styles = theme => ({
-//   button: {
-//     margin: theme.spacing.unit,
-//   },
-//   input: {
-//     display: 'none',
-//   },
-// });
 class TextEditor extends Component {
   constructor(props) {
     super(props);
@@ -52,12 +38,8 @@ class TextEditor extends Component {
     let endTime = moment();
     let newTime = endTime.diff(this.state.time);
     const pinPrompt = this.props.pinnedPrompt;
-    // // pinPrompt = this.props.pinnedPrompt;
     const {editorState} = this.state;
     const content = { text: editorStateToJSON(editorState), title: this.state.title, genre: this.props.genreSave, time_length: newTime, entry_length: this.countWords(editorStateToJSON(this.state.editorState)), entry_prompt: pinPrompt, subTime: moment()._d };
-      //once tags are added, make sure all info is added before you can save
-    console.log(content);
-    console.log(this.props.pinnedPrompt);
     
     if (this.state.title !== '') {
       const action = {type: 'ADD_ENTRY', payload: content}
@@ -66,7 +48,6 @@ class TextEditor extends Component {
     } else {
         alert("Make sure to name your story!");;
     }
-    // this.props.history.push("/home")
   }
 
  countWords = (s) => {   //word counter found on stack overflow. Counts line breaks as 16 words.
@@ -85,9 +66,6 @@ class TextEditor extends Component {
     } else {
       return wordsTilGoal
     }
-
-    // this.setState({ entry_length: wordsTilGoal - (wordsCounted - 21) })
-    // return wordsTilGoal - (wordsCounted-21); //21 is the length of the JSON string
   }
   titleChange = (event) => {
     this.setState({ title: event.target.value })
@@ -113,9 +91,7 @@ class TextEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange} />
         </div>
-        {/* <button onClick={this.timeTest}>Time</button> */}
         <div className="text-editor-buttons">
-          {/* {this.buttonStyling()} */}
           <PromptButton />
           <Genre />
           <button onClick={this.saveContent} className="ph-button">Save</button>

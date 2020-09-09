@@ -25,22 +25,11 @@ function* fetchUser() {
 }
 function* editGoal(action) {
   try {
-    // const config = {
-    //   headers: { 'Content-Type': 'application/json' },
-    //   withCredentials: true,
-    // };
     yield axios.put(`api/user/${action.payload.id}`, action.payload);
-    // console.log(response.data);
-    
-    // yield put({ type: 'SET_USER', payload: response.data });
+
   } catch (error) {
     console.log('User edit goal failed', error);
   }
-  // try {
-  //   yield axios.put(`api/entries/${action.payload.id}`, action.payload);
-  // } catch (error) {
-  //   console.log('error in edit goal saga', error);
-  // }
 }
 
 function* userSaga() {

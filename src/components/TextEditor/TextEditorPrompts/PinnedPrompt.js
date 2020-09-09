@@ -19,30 +19,50 @@ const styles = theme => ({
         justifyContent: 'center',
     },
 });
-class PinnedPrompt extends Component {
-    showPrompt = () =>{
-        const { classes } = this.props;
+// class PinnedPrompt extends Component {
+//     showPrompt = () =>{
+//         const { classes } = this.props;
+//         return (
+//             <div>
+//                 <Paper className={classes.root} elevation={1}>
+//                     <Typography component="p">
+//                         {this.props.pinnedPrompt}
+//         </Typography>
+//                 </Paper>
+//             </div>
+//         );
+//     }
+
+//     render() {
+//         // const { classes } = styles;
+//         return (
+//             <div>
+//                 {this.props.pinnedPrompt.length !== 0 && this.showPrompt()}
+//             </div>
+//         )
+//     }
+// }
+
+const PinnedPrompt = (props) => {
+    const showPrompt = () =>{
+        const { classes } = props;
         return (
             <div>
                 <Paper className={classes.root} elevation={1}>
                     <Typography component="p">
-                        {this.props.pinnedPrompt}
+                        {props.pinnedPrompt}
         </Typography>
                 </Paper>
             </div>
         );
     }
 
-    render() {
-        // const { classes } = styles;
-        return (
-            <div>
-                {this.props.pinnedPrompt.length !== 0 && this.showPrompt()}
-            </div>
-        )
-    }
+    return (
+        <div>
+            {props.pinnedPrompt.length !== 0 && showPrompt()}
+        </div>
+    )
 }
-
 
 const mapStoreToProps = state => ({
     pinnedPrompt: state.pinnedPrompt,

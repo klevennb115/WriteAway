@@ -1,39 +1,39 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-class Genre extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: '' };
-    }
-    componentDidMount(){
-        this.changeGenre()
-    }
-    changeGenre = () => {
-        this.props.dispatch({ type: 'GET_GENRES' });
-    }
-    handleChange = (event) => {
-        const action = {type: "SAVE_GENRE", payload: event.target.value};
-        this.props.dispatch(action);
-        this.setState({value: event.target.value});        
+const Genre = (props) => {
+    const [value, setValue] = useState('')
+
+    useEffect(() => {
+        changeGenre();
+    }, []);
+
+    const changeGenre = () => {
+        props.dispatch({ type: 'GET_GENRES' });
     }
 
-    render() {
-        return (
-            <div>
-                <h4>Set Genre:</h4>
-                <select value={this.state.value}
-                    onChange={this.handleChange}>
-                    <option value='Uncategorized'>Uncategorized</option>
-                    {this.props.genres.map((genre, i) => {
-                        return <option key={i} value={genre.types}>{genre.types}</option>
-                    })}
-                </select> 
-            </div>
-        )
+    const handleChange = (event) => {
+        const action = {type: "SAVE_GENRE", payload: event.target.value};
+        props.dispatch(action);
+        setValue(event.target.value);        
     }
+
+    return ( 
+        <div>
+            <h4>Set Genre:</h4>
+            <select value={value}
+                onChange={handleChange}>
+                <option value='Uncategorized'>Uncategorized</option>
+                {props.genres.map((genre, i) => {
+                    return <option key={i} value={genre.types}>{genre.types}</option>
+                })}
+            </select> 
+        </div>
+    );
 }
+ 
 const mapStoreToProps = reduxStore => ({
     genres : reduxStore.genres
 })
+
 export default connect(mapStoreToProps)(Genre);

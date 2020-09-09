@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import WritingEntries from '../../components/WritingEntries/WritingEntries';
-import Overview from '../../components/Overview/Overview';
+import ProfileOverview from '../../components/ProfileOverview/ProfileOverview';
 import './Profile.css';
 
 class Profile extends Component {
     render(){
         return(
             <div>
-                <Overview className='overview'/>
+                <ProfileOverview className='overview'/>
                 <WritingEntries history={this.props.history}/>
             </div>
             

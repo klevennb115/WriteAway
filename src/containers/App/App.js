@@ -14,7 +14,6 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import Profile from '../../containers/Profile/Profile';
 import TextEditor from '../../components/TextEditor/TextEditor';
-import ManualEntry from '../../components/ManualEntry/ManualEntry';
 import EditEntry from '../../components/EditEntry/EditEntry';
 
 import './App.css';
@@ -50,11 +49,6 @@ class App extends Component {
               exact
               path="/write"
               component={TextEditor}
-            />
-            <ProtectedRoute
-              exact
-              path="/add-writing"
-              component={ManualEntry}
             />
             <ProtectedRoute
               exact

@@ -4,9 +4,9 @@ import { editorStateToJSON } from 'megadraft/lib/utils';
 import '../TextEditor/megadraft.css';
 import './TextEditor.css';
 import {connect} from 'react-redux';
-import PromptButton from '../TextEditor/TextEditorPrompts/PromptButton'
+import PromptButton from '../PromptButton/PromptButton'
 import Genre from '../Genre/Genre';
-import PinnedPrompt from './TextEditorPrompts/PinnedPrompt';
+import PinnedPrompt from '../PinnedPrompt/PinnedPrompt';
 import PropTypes from 'prop-types'; //materialUI stuff
 
 var moment = require('moment');  //needed to timestamp submission

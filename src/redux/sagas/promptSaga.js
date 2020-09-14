@@ -12,7 +12,7 @@ function* getAdvice() {
 }
 
 function* promptSaga() {
-    yield takeLatest('GET_ADVICE', getAdvice);
+    yield takeLatest('GET_PROMPTS', getAdvice);
 }
 
 export default promptSaga;

@@ -55,3 +55,28 @@ UPDATE "writing_entry" SET "entry_contents"= '{"blocks":[{"key":"1f5fm","text":"
 
 INSERT INTO "prompts" ("type_of_prompt", "text")
 VALUES ('4','If writing seems hard, it’s because it is hard. It’s one of the hardest things people do. – William Zinsser');
+
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('1','You aunt passes away, leaving you $500,000 in her will under the condition that you resume care for your hundred-year-old home.');
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('1','A loved one confides in you, but the secret could damage someone else you care about. What do you do? ');
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('1','Your fingers tensed around the object in your pocket, ready to pull it out at a moment’s notice. ');
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('1','Local gravestones begin disappearing.');
+
+
+
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('2','Your spaceship has landed on an unknown planet and there is data showing lifeforms who have created artistic structures. There is an artist in your group who wants to make first contact with the beings through art.');
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('2','The Earth has reached its breaking point after global warming and widespread disease, and a group of aliens arrive to help humans rebuild the planet they have destroyed.');
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('2','We discover that beneath its seemingly uninhabitable appearance, Mars has an entire race of subterranean alien lifeforms living on it. You are part of the team sent to explore this civilization.');
+
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('3','Write about a person who meets with the ghost of an old friend for tea every so often.');a
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('3','Write a story about someone who finds a magical portal in their home.');
+INSERT INTO "prompts" ("type_of_prompt", "text")
+VALUES ('3','One day, the sun rose in the west and set in the east.');

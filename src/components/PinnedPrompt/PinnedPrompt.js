@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -19,35 +19,32 @@ const styles = theme => ({
         justifyContent: 'center',
     },
 });
-class PinnedPrompt extends Component {
-    showPrompt = () =>{
-        const { classes } = this.props;
+
+const PinnedPrompt = (props) => {
+    const showPrompt = () =>{
+        const { classes } = props;
         return (
             <div>
                 <Paper className={classes.root} elevation={1}>
                     <Typography component="p">
-                        {this.props.pinnedPrompt}
+                        {props.pinnedPrompt}
         </Typography>
                 </Paper>
             </div>
         );
     }
 
-    render() {
-        // const { classes } = styles;
-        return (
-            <div>
-                {this.props.pinnedPrompt.length !== 0 && this.showPrompt()}
-            </div>
-        )
-    }
+    return (
+        <div>
+            {props.pinnedPrompt.length !== 0 && showPrompt()}
+        </div>
+    )
 }
-
 
 const mapStoreToProps = state => ({
     pinnedPrompt: state.pinnedPrompt,
 });
-// export default connect(mapStoreToProps)(PinnedPrompt);
+
 PinnedPrompt.propTypes = {
     classes: PropTypes.object.isRequired,
 };

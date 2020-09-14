@@ -1,33 +1,23 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-// import promptSaga from '../../../redux/sagas/promptSaga';
 import swal from 'sweetalert';
-// import PropTypes from 'prop-types'; //materialUI stuff
-// import classNames from ' ';
-// import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-// import Button from '@material-ui/core/Button';
-// import brown from '@material-ui/core/colors/brown';
 
-class PromptButton extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            genre: []
-        }
+const PromptButton = (props) => {
+    const [genre, setGenre] = useState('');
+    useEffect(() => {
+        getPrompts();
+    }, []);
+
+    const getPrompts = () => {
+        props.dispatch({ type: "GET_PROMPTS" });  //should technically be called GET_PROMPTS
     }
-    componentDidMount() {
-        this.getPrompts();
-    }
-    getPrompts = () => {
-        this.props.dispatch({ type: 'GET_ADVICE' });  //should technically be called GET_PROMPTS
-    }
-    showPrompt = () => {
+    const showPrompt = () => {
         let fantasyPrompts = [];
         let journalPrompts = [];
         let scifiPrompts = [];
         let romancePrompts = [];
         let thrillerPrompts = [];
-        for (const entry of this.props.prompt) {  //sorts prompts by type
+        for (const entry of props.prompt) {  //sorts prompts by type
             if (entry.type_of_prompt === 2) {
                 scifiPrompts.push(entry);
             } else if (entry.type_of_prompt === 6) {
@@ -56,10 +46,8 @@ class PromptButton extends Component {
             }).then((value) => {
                 switch (value) {
                     case "journal":
-                        this.setState({
-                            genre: journalPrompts
-                        });
-                        this.promptAlert(journalPrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                        setGenre("journal")
+                       promptAlert(journalPrompts[Math.floor(Math.random() * Math.floor(genre.length))].text);
                         break;
                     case "creative":
                         swal("What genre are you looking for?",{
@@ -86,28 +74,20 @@ class PromptButton extends Component {
                             switch (value) {
 
                                 case "fantasy":
-                                    this.setState({
-                                        genre: fantasyPrompts
-                                    });
-                                    this.promptAlert(fantasyPrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                                    setGenre(fantasyPrompts);
+                                    promptAlert(fantasyPrompts[Math.floor(Math.random() * Math.floor(genre.length))].text);
                                     break;
                                 case "romance":
-                                    this.setState({
-                                        genre: romancePrompts
-                                    });
-                                    this.promptAlert(romancePrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                                    setGenre(romancePrompts);
+                                    promptAlert(romancePrompts[Math.floor(Math.random() * Math.floor(genre.length))].text);
                                     break;
                                 case "scifi":
-                                    this.setState({
-                                        genre: scifiPrompts
-                                    });
-                                    this.promptAlert(scifiPrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                                    setGenre(scifiPrompts);
+                                    promptAlert(scifiPrompts[Math.floor(Math.random() * Math.floor(genre.length))].text);
                                     break;
                                 case "thriller":
-                                    this.setState({
-                                        genre: thrillerPrompts
-                                    });
-                                    this.promptAlert(thrillerPrompts[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text);
+                                    setGenre(thrillerPrompts);
+                                    promptAlert(thrillerPrompts[Math.floor(Math.random() * Math.floor(genre.length))].text);
                                     break;
                                 default:
                                     break;
@@ -118,7 +98,7 @@ class PromptButton extends Component {
                         break;
                 }
     })}
-    promptAlert = (prompt) => {
+    const promptAlert = (prompt) => {
         swal(prompt, {
             buttons: {
                 cancel: "Cancel",
@@ -135,7 +115,7 @@ class PromptButton extends Component {
                 switch (value) {
 
                     case "next":
-                        this.promptAlert(this.state.genre[Math.floor(Math.random() * Math.floor(this.state.genre.length))].text)
+                        promptAlert(genre[Math.floor(Math.random() * Math.floor(genre.length))].text)
                         break;
 
                     case "pin":
@@ -143,7 +123,7 @@ class PromptButton extends Component {
                             type: "PIN_PROMPT",
                             payload: prompt
                         }
-                        this.props.dispatch(action);
+                        props.dispatch(action);
                         break;
 
                     default:
@@ -151,16 +131,13 @@ class PromptButton extends Component {
                 }
             });
     }
-
-    render() {
-        return (
-            <div>
-                <button onClick={this.showPrompt} className="ph-button">I need a prompt!</button>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <button onClick={showPrompt} className="ph-button">I need a prompt!</button>
+        </div>
+    )
 }
-
+ 
 const mapStoreToProps = state => ({
     prompt: state.prompt,
 });

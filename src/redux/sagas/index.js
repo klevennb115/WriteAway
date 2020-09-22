@@ -5,6 +5,7 @@ import userSaga from './userSaga';
 import promptSaga from './promptSaga';
 import entrySaga from './entrySaga';
 import genreSaga from './genreSaga';
+import promptTypeSaga from './promptTypeSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     promptSaga(),
     entrySaga(),
     genreSaga(),
+    promptTypeSaga(),
   ]);
 }

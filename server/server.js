@@ -31,6 +31,7 @@ app.use('/api/prompts', promptsRouter);
 app.use('/api/entries', entriesRouter);
 app.use('/api/genres', genresRouter);
 
+
 // Serve static files
 app.use(express.static('build'));
 

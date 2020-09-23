@@ -2,161 +2,39 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import swal from 'sweetalert';
 
-// const PromptButton = (props) => {
-//     const [genre, setGenre] = useState('');
-//     useEffect(() => {
-//         getPrompts();
-//     }, []);
-
-//     const getPrompts = () => {
-//         props.dispatch({ type: "GET_PROMPTS" });
-//     }
-//     const showPrompt = () => {
-//         let fantasyPrompts = [];
-//         let journalPrompts = [];
-//         let scifiPrompts = [];
-//         let romancePrompts = [];
-//         let thrillerPrompts = [];
-//         for (const entry of props.prompt) {  //sorts prompts by type
-//             if (entry.type_of_prompt === 2) {
-//                 scifiPrompts.push(entry);
-//             } else if (entry.type_of_prompt === 6) {
-//                 journalPrompts.push(entry);
-//             } else if (entry.type_of_prompt === 3) {
-//                 fantasyPrompts.push(entry);
-//             } else if (entry.type_of_prompt === 8) {
-//                 romancePrompts.push(entry);
-//             } else if (entry.type_of_prompt === 9) {
-//                 thrillerPrompts.push(entry);
-//             }
-//         }
-
-//             swal("What kind of prompt would you like?", {
-//                 buttons: {
-//                     creative: {
-//                         text: "Creative Prompt",
-//                         value: "creative",  //case looks for values
-//                     },
-//                     journal: {
-//                         text: "Journal Prompt",
-//                         value: "journal",
-//                     },
-//                     cancel: "Cancel"
-//                 },
-//             }).then((value) => {
-//                 switch (value) {
-//                     case "journal":
-//                         setGenre("journal")
-//                        promptAlert(journalPrompts[Math.floor(Math.random() * Math.floor(journalPrompts.length))].text);
-//                         break;
-//                     case "creative":
-//                         swal("What genre are you looking for?",{
-//                             buttons:{
-//                                 fantasy: {
-//                                     text: "Fantasy",
-//                                     value: "fantasy"
-//                                 },
-//                                 romance: {
-//                                     text: "Romance",
-//                                     value: "romance"
-//                                 },
-//                                 scifi: {
-//                                     text: "Science Fiction",
-//                                     value: "scifi"
-//                                 },
-//                                 thriller: {
-//                                     text: "Thriller",
-//                                     value: "thriller"
-//                                 },
-//                                 cancel: true
-//                             }
-//                         }).then((value) => {
-//                             switch (value) {
-
-//                                 case "fantasy":
-//                                     setGenre("fantasy");
-//                                     promptAlert(fantasyPrompts[Math.floor(Math.random() * Math.floor(fantasyPrompts.length))].text);
-//                                     break;
-//                                 case "romance":
-//                                     setGenre("romance");
-//                                     promptAlert(romancePrompts[Math.floor(Math.random() * Math.floor(romancePrompts.length))].text);
-//                                     break;
-//                                 case "scifi":
-//                                     setGenre("scifi");
-//                                     promptAlert(scifiPrompts[Math.floor(Math.random() * Math.floor(scifiPrompts.length))].text, scifiPrompts.length);
-//                                     console.log('scifiPrompts', scifiPrompts, genre)
-//                                     break;
-//                                 case "thriller":
-//                                     setGenre("thriller");
-//                                     promptAlert(thrillerPrompts[Math.floor(Math.random() * Math.floor(thrillerPrompts.length))].text, thrillerPrompts.length);
-//                                     break;
-//                                 default:
-//                                     break;
-//                             }
-//                         });
-//                         break;
-//                     default:
-//                         break;
-//                 }
-//     })}
-//     const promptAlert = (prompt, lengthOfPromptArray) => {
-//         swal(prompt, {
-// 					buttons: {
-// 						cancel: "Cancel",
-// 						pin: {
-// 							text: "Use this prompt",
-// 							value: "pin",
-// 						},
-// 						next: {
-// 							value: { value: "next", length: lengthOfPromptArray },
-// 						},
-// 					},
-// 				}).then((value) => {
-// 					switch (value.value) {
-// 						case "next":
-// 							promptAlert(
-// 								genre[Math.floor(Math.random() * Math.floor(value.length))].text
-// 							);
-// 							break;
-
-// 						case "pin":
-// 							let action = {
-// 								type: "PIN_PROMPT",
-// 								payload: prompt,
-// 							};
-// 							props.dispatch(action);
-// 							break;
-
-// 						default:
-// 							break;
-// 					}
-// 				});
-//     }
-//     return (
-//         <div>
-//             <button onClick={showPrompt} className="ph-button">I need a prompt!</button>
-//         </div>
-//     )
-// }
-
 const PromptButton = (props) => {
-	const [genre, setGenre] = useState("");
+	const [genre] = useState("");
 	useEffect(() => {
 		getPrompts();
-	}, []);
+	}, [genre]);
 
-	const getPrompts = () => {
-		props.dispatch({ type: "GET_PROMPTS" });
-    };
-
-	const showPrompt = () => {
-        console.log(props.prompt);
 		let fantasyPrompts = [];
 		let journalPrompts = [];
 		let scifiPrompts = [];
 		let romancePrompts = [];
 		let thrillerPrompts = [];
-		for (const entry of props.prompt) {
+
+	const getArray = (promptName) => {
+		switch (promptName) {
+			case "journal":
+				return journalPrompts;
+			case "fantasy":
+				return fantasyPrompts;
+			case "scifi":
+				return scifiPrompts;
+			case "romance":
+				return romancePrompts;
+			case "thriller":
+				return thrillerPrompts;
+			default:
+				break;
+		}
+	}
+	const getPrompts = () => {
+		props.dispatch({ type: "GET_PROMPTS" });
+	};
+	const sortPrompts = (unsortedPrompts) => {
+		for (const entry of unsortedPrompts) {
 			//sorts prompts by type
 			if (entry.type_of_prompt === 2) {
 				scifiPrompts.push(entry);
@@ -167,9 +45,10 @@ const PromptButton = (props) => {
 			} else if (entry.type_of_prompt === 8) {
 				romancePrompts.push(entry);
 			}
-        }
-        
+		}
+	}
 
+	const showPrompt = () => {
 		swal("What kind of prompt would you like?", {
 			buttons: {
 				creative: {
@@ -185,11 +64,9 @@ const PromptButton = (props) => {
 		}).then((value) => {
 			switch (value) {
 				case "journal":
-					setGenre("journal");
+					let array = getArray("journal");
 					promptAlert(
-						journalPrompts[
-							Math.floor(Math.random() * Math.floor(journalPrompts.length))
-						].text
+						array[Math.floor(Math.random() * Math.floor(array.length))].text, array.length, array
 					);
 					break;
 				case "creative":
@@ -216,44 +93,38 @@ const PromptButton = (props) => {
 					}).then((value) => {
 						switch (value) {
 							case "fantasy":
-								setGenre("fantasy");
+								array = getArray("fantasy");
 								promptAlert(
-									fantasyPrompts[
-										Math.floor(
-											Math.random() * Math.floor(fantasyPrompts.length)
-										)
-									].text
+									array[Math.floor(Math.random() * Math.floor(array.length))].text,
+									array.length,
+									array
 								);
 								break;
 							case "romance":
-								setGenre("romance");
+								array = getArray("romance");
 								promptAlert(
-									romancePrompts[
-										Math.floor(
-											Math.random() * Math.floor(romancePrompts.length)
-										)
-									].text
+									array[Math.floor(Math.random() * Math.floor(array.length))]
+										.text,
+									array.length,
+									array
 								);
 								break;
 							case "scifi":
-								setGenre("scifi");
+								array = getArray("scifi");
 								promptAlert(
-									scifiPrompts[
-										Math.floor(Math.random() * Math.floor(scifiPrompts.length))
-									].text,
-									scifiPrompts.length
+									array[Math.floor(Math.random() * Math.floor(array.length))]
+										.text,
+									array.length,
+									array
 								);
-								console.log("scifiPrompts", scifiPrompts, genre);
 								break;
 							case "thriller":
-								setGenre("thriller");
+								array = getArray("thriller");
 								promptAlert(
-									thrillerPrompts[
-										Math.floor(
-											Math.random() * Math.floor(thrillerPrompts.length)
-										)
-									].text,
-									thrillerPrompts.length
+									array[Math.floor(Math.random() * Math.floor(array.length))]
+										.text,
+									array.length,
+									array
 								);
 								break;
 							default:
@@ -266,23 +137,24 @@ const PromptButton = (props) => {
 			}
 		});
 	};
-	const promptAlert = (prompt, lengthOfPromptArray) => {
+	const promptAlert = (prompt, lengthOfPromptArray, array) => {
 		swal(prompt, {
 			buttons: {
-				cancel: "Cancel",
+				cancelButton: {text: "Cancel", value: {value:"cancel"}},
 				pin: {
 					text: "Use this prompt",
-					value: "pin",
+					value: {value:"pin"},
 				},
 				next: {
-					value: { value: "next", length: lengthOfPromptArray },
+					value: { value: "next", length: lengthOfPromptArray, array: array },
 				},
 			},
 		}).then((value) => {
 			switch (value.value) {
 				case "next":
+					let array = value.array;
 					promptAlert(
-						genre[Math.floor(Math.random() * Math.floor(value.length))].text
+						array[Math.floor(Math.random() * Math.floor(value.length))].text, value.length, array
 					);
 					break;
 
@@ -299,6 +171,8 @@ const PromptButton = (props) => {
 			}
 		});
 	};
+	sortPrompts(props.prompt);
+
 	return (
 		<div>
 			<button onClick={showPrompt} className="ph-button">

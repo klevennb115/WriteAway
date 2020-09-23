@@ -1,26 +1,3 @@
-// import React from "react";
-
-// const { createContext, useContext } = React;
-
-// const PromptContext = createContext(null);
-
-// export const PromptConverterProvider = (props) => {
-// 	const value = {
-// 		getPromptGenreInt,
-// 		getPromptGenreString,
-// 	};
-
-// 	return (
-// 		<PromptConverterProvider.Provider value={value} />
-// 		// 	{/* {props.children}
-// 		// </PromptConverterProvider.Provider> */}
-// 	);
-// };
-
-// export const usePromptConverter = () => {
-// 	return useContext(PromptContext);
-// };
-
 export const getPromptGenreString = (number) => {
 	switch (number) {
 		case 1:

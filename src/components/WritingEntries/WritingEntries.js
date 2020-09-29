@@ -78,7 +78,6 @@ WritingEntries.propTypes = {
 };
 const mapStoreToProps = reduxStore => ({
     entry: reduxStore.entry,
-    // story: reduxStore.story
 })
 
 export default compose(

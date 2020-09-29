@@ -1,4 +1,5 @@
 import React, { useEffect} from 'react';
+import {Container, Col, Row} from 'react-bootstrap';
 import { connect } from 'react-redux';
 var moment = require('moment'); 
 
@@ -41,13 +42,21 @@ const StreakCounter = (props) => {
     if (todayPost !== 0) {
         streak +=1;
     }
-    return(
-        <div>
-            <h1 className="advice">
-                Welcome, {props.user.username}! {streak ? `You have written ${streak} days in a row!` : 'Time to start a new writing streak!'}
-            </h1>
-        </div>
-    )
+    return (
+
+			<Container fluid="md">
+				<Row>
+					<Col>
+						<h1 class="d-flex justify-content-center mt-5 mb-1">
+							Welcome, {props.user.username}!{" "}
+							{streak
+								? `You have written ${streak} days in a row!`
+								: "Time to start a new writing streak!"}
+						</h1>
+					</Col>
+				</Row>
+			</Container>
+		);
 }
 
 const mapStateToProps = state => ({

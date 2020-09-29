@@ -8,6 +8,8 @@ import PromptButton from '../PromptButton/PromptButton'
 import Genre from '../Genre/Genre';
 import PinnedPrompt from '../PinnedPrompt/PinnedPrompt';
 import PropTypes from 'prop-types'; //materialUI stuff
+import { Container, Col, Row, Button } from "react-bootstrap";
+
 
 var moment = require('moment');  //needed to timestamp submission
 
@@ -73,32 +75,43 @@ class TextEditor extends Component {
 
   render() {
     return (
-      <div >
-        <div className="editor-header header">
-          <div className="editor-header">
-            <h2>Title:</h2>
-            <input className="title" placeholder="Title" onChange={this.titleChange}></input>
-          </div>
-          
-          <h3>Words Til Goal: {this.wordsLeft()}</h3>
-        </div>
-      
-        
-        <div className="pinned-content"><PinnedPrompt /></div>
-        
-        <div id="editorContainer">        
-          <MegadraftEditor
-          editorState={this.state.editorState}
-          onChange={this.onChange} />
-        </div>
-        <div className="text-editor-buttons">
-          <PromptButton />
-          <Genre />
-          <button onClick={this.saveContent} className="ph-button">Save</button>
-        </div>
-        
-      </div>
-    );
+			<Container fluid="md">
+				<div className="editor-header header">
+					<div className="editor-header">
+						<h2>Title:</h2>
+						<input
+							className="title"
+							placeholder="Title"
+							onChange={this.titleChange}
+						></input>
+					</div>
+
+					<h3>Words Til Goal: {this.wordsLeft()}</h3>
+				</div>
+				<div className="pinned-content">
+					<PinnedPrompt />
+				</div>
+				<div id="editorContainer">
+					<MegadraftEditor
+						editorState={this.state.editorState}
+						onChange={this.onChange}
+					/>
+				</div>
+				<Row className="d-flex justify-content-around mt-2">
+					<Col className="d-flex justify-content-end">
+						<PromptButton />
+					</Col>
+					<Col className="d-flex justify-content-center">
+						<Genre />
+					</Col>
+					<Col>
+						<Button onClick={this.saveContent} className="ph-button">
+							Save
+						</Button>
+					</Col>
+				</Row>
+			</Container>
+		);
   }
 }
 TextEditor.propTypes = {

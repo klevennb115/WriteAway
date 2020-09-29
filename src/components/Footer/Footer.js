@@ -1,10 +1,5 @@
 import React from 'react';
-import './Footer.css'
 
-const Footer = () => (
-  <footer>
-    &copy; WriteAway
-  </footer>
-);
+const Footer = () => <footer className="fixed-bottom">&copy; WriteAway</footer>;
 
 export default Footer;

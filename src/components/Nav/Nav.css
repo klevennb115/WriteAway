@@ -14,6 +14,7 @@
 .nav {
   overflow: hidden;
   background-color:sienna;
+  display: flex;
   /* height: ; */
 }
 
@@ -38,5 +39,14 @@
 }
 
 .nav-right {
+  display: flex;
   float: right;
+}
+
+.blah{
+ align-items: flex-end;
+}
+.navcolor{
+    color: #f2f2f2;
+  background-color: sienna;
 }

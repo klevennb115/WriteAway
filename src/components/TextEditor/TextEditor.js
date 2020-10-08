@@ -9,6 +9,8 @@ import Genre from '../Genre/Genre';
 import PinnedPrompt from '../PinnedPrompt/PinnedPrompt';
 import PropTypes from 'prop-types'; //materialUI stuff
 import { Container, Col, Row, Button } from "react-bootstrap";
+import * as wordCountService from "../../services/wordCounterService";
+import EditorContainer from "../../containers/EditorContainer/EditorContainer";
 
 
 var moment = require('moment');  //needed to timestamp submission
@@ -52,23 +54,6 @@ class TextEditor extends Component {
     }
   }
 
- countWords = (s) => {   //word counter found on stack overflow. Counts line breaks as 16 words.
-     s = s.replace(/(^\s*)|(\s*$)/gi, "");//exclude  start and end white-space
-     s = s.replace(/[ ]{2,}/gi, " ");//2 or more space to 1
-     s = s.replace(/\n /, "\n"); // exclude newline with a start spacing
-     return s.split(' ').filter(function (str) { return str !== ""; }).length;
-      //return s.split(' ').filter(String).length; - this can also be used
- }
-  wordsLeft = () => {
-    let wordsInEditor = editorStateToJSON(this.state.editorState);
-    let wordsCounted = this.countWords(wordsInEditor);
-    let wordsTilGoal = this.props.user.word_goal - (wordsCounted - 21);  //21 is the length of the JSON string
-    if (wordsTilGoal <= 0) {
-      return 'Goal Reached!'  //need to fix
-    } else {
-      return wordsTilGoal
-    }
-  }
   titleChange = (event) => {
     this.setState({ title: event.target.value })
   }
@@ -86,13 +71,24 @@ class TextEditor extends Component {
 						></input>
 					</div>
 
-					<h3>Words Til Goal: {this.wordsLeft()}</h3>
+					<h3>
+						Words Til Goal:{" "}
+						{wordCountService.wordsLeft(
+							this.state.editorState,
+							this.props.user.word_goal
+						)}
+					</h3>
 				</div>
 				<div className="pinned-content">
 					<PinnedPrompt />
 				</div>
-				<div id="editorContainer">
+				<div className="m-5 bg-light">
+					{/* <div id="editorContainer">
 					<MegadraftEditor
+						editorState={this.state.editorState}
+						onChange={this.onChange}
+					/> */}
+					<EditorContainer
 						editorState={this.state.editorState}
 						onChange={this.onChange}
 					/>

@@ -13,7 +13,7 @@ import Footer from '../../components/Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import Profile from '../../containers/Profile/Profile';
-import TextEditor from '../../components/TextEditor/TextEditor';
+import EditorContainer from '../../containers/EditorContainer/EditorContainer';
 import EditEntry from '../../components/EditEntry/EditEntry';
 import PromptManager from '../PromptManager/PromptManager'
 
@@ -34,9 +34,13 @@ class App extends Component {
 						<Route exact path="/about" component={AboutPage} />
 						<ProtectedRoute exact path="/home" component={UserPage} />
 						<ProtectedRoute exact path="/profile" component={Profile} />
-						<ProtectedRoute exact path="/write" component={TextEditor} />
+						<ProtectedRoute exact path="/write" component={EditorContainer} />
 						<ProtectedRoute exact path="/edit-writing" component={EditEntry} />
-						<ProtectedRoute exact path="/prompt-manager" component={PromptManager} />
+						<ProtectedRoute
+							exact
+							path="/prompt-manager"
+							component={PromptManager}
+						/>
 						<Route render={() => <h1>404</h1>} />
 					</Switch>
 					<Footer />

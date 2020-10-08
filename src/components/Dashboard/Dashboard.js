@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {Container, Col, Row, Button} from 'react-bootstrap';
 
-
 const Dashboard = (props) => {
     useEffect(() => {
         const action = {
@@ -20,7 +19,7 @@ const Dashboard = (props) => {
             }}
         
         return advicePrompts[Math.floor(Math.random() * Math.floor(advicePrompts.length))].text  
-    }
+	}
 
     return (
 			<Container fluid="md">

@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const userID = req.user.id;
-    const contents = JSON.parse(req.body.text);
+    const contents = req.body.text;
     const title = req.body.title;
     const genre = req.body.genre;
     const timeLength = req.body.time_length;

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // No changes should be required in this file
 
 const cookieSession = require('cookie-session');
@@ -14,9 +15,9 @@ const warnings = require('../constants/warnings');
 */
 
 const serverSessionSecret = () => {
-  if (!process.env.SERVER_SESSION_SECRET ||
-      process.env.SERVER_SESSION_SECRET.length < 8 ||
-      process.env.SERVER_SESSION_SECRET === warnings.exampleBadSecret) {
+  if (!process.env.SERVER_SESSION_SECRET
+      || process.env.SERVER_SESSION_SECRET.length < 8
+      || process.env.SERVER_SESSION_SECRET === warnings.exampleBadSecret) {
     // Warning if user doesn't have a good secret
     console.log(warnings.badSecret);
   }

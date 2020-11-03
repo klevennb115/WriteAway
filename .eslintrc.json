@@ -1,0 +1,39 @@
+{
+    "env": {
+        "es2021": true,
+        "browser": true,
+        "node": true,
+        "jest": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "react/prop-types": 0,
+        "import/no-named-as-default": 0,
+        "import/no-named-as-default-member": 0,
+        "react/destructuring-assignment": 0,
+        "react/state-in-constructor": 0,
+        "react/jsx-props-no-spreading": 0,
+        "consistent-return": 0,
+        "quotes": [
+            2,
+            "single",
+            {
+                "avoidEscape": true
+            }
+        ]
+    }
+}

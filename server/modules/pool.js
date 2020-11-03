@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* the only line you likely need to change is
 
  database: 'prime_app',

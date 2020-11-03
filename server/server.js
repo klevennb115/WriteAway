@@ -1,4 +1,3 @@
-
 const express = require('express');
 require('dotenv').config();
 
@@ -31,7 +30,6 @@ app.use('/api/prompts', promptsRouter);
 app.use('/api/entries', entriesRouter);
 app.use('/api/genres', genresRouter);
 
-
 // Serve static files
 app.use(express.static('build'));
 
@@ -40,5 +38,6 @@ const PORT = process.env.PORT || 5000;
 
 /** Listen * */
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Listening on port: ${PORT}`);
 });

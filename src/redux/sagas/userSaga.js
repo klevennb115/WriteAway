@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
@@ -26,7 +27,6 @@ function* fetchUser() {
 function* editGoal(action) {
   try {
     yield axios.put(`api/user/${action.payload.id}`, action.payload);
-
   } catch (error) {
     console.log('User edit goal failed', error);
   }
@@ -34,7 +34,7 @@ function* editGoal(action) {
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
-  yield takeLatest('EDIT_GOAL', editGoal)
+  yield takeLatest('EDIT_GOAL', editGoal);
 }
 
 export default userSaga;
